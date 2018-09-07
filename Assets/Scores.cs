@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEngine;
 using Rnd = UnityEngine.Random;
 
@@ -24,7 +25,7 @@ public partial class TennisModule
     abstract class GameState
     {
         public static GameState GetInitial(bool isMensPlay, Tournament tournament) { return new GameStateScores(isMensPlay, tournament, new SetScores[] { new SetScores() }); }
-        public abstract void Setup(TennisModule module, string name1, string name2);
+        public abstract void Setup(TennisModule module, TennisPlayer player1, TennisPlayer player2);
     }
     sealed class GameStateScores : GameState
     {
@@ -49,6 +50,14 @@ public partial class TennisModule
                 return (Sets.Sum(set => set.Player1Score + set.Player2Score) % 2 == 0) ^ (IsTieBreak && (Player1Score + Player2Score + 1) % 4 >= 2);
             }
         }
+
+        public GameStateScores Normalize()
+        {
+            if (Tournament != Tournament.FrenchOpenRolandGarros && !IsTieBreak && Player1Score == 3 && Player2Score == 3)
+                return new GameStateScores(IsMensPlay, Tournament, Sets, 4, 4);
+            return this;
+        }
+
         public GameState PlayerScores(bool server)
         {
             var isPlayer1 = !(server ^ IsPlayer1Serving);
@@ -86,6 +95,52 @@ public partial class TennisModule
             return new GameStateScores(IsMensPlay, Tournament, Sets, Player1Score + (isPlayer1 ? 1 : 0), Player2Score + (isPlayer1 ? 0 : 1), IsTieBreak);
         }
 
+        public GameStateScores ClickGameScore(bool isPlayer1)
+        {
+            if (IsTieBreak)
+                return new GameStateScores(IsMensPlay, Tournament, Sets, Player1Score + (isPlayer1 ? 1 : 0), Player2Score + (isPlayer1 ? 0 : 1), tiebreak: true);
+            return new GameStateScores(IsMensPlay, Tournament, Sets, (Player1Score + (isPlayer1 ? 1 : 0)) % 4, (Player2Score + (isPlayer1 ? 0 : 1)) % 4);
+        }
+
+        public GameStateScores LongClickGameScore()
+        {
+            return new GameStateScores(IsMensPlay, Tournament, Sets, 0, 0, IsTieBreak);
+        }
+
+        public GameStateScores ClickGameScore2()
+        {
+            if (Player1Score == 4 && Player2Score == 4)
+                return new GameStateScores(IsMensPlay, Tournament, Sets, 4, 3);
+            if (Player1Score == 4 && Player2Score == 3)
+                return new GameStateScores(IsMensPlay, Tournament, Sets, 3, 4);
+            return new GameStateScores(IsMensPlay, Tournament, Sets, 4, 4);
+        }
+
+        public GameStateScores ClickRacket()
+        {
+            if (IsTieBreak)
+                return new GameStateScores(IsMensPlay, Tournament, Sets, 0, 0);
+            if (Player1Score == 4 || Player2Score == 4)
+                return new GameStateScores(IsMensPlay, Tournament, Sets, 0, 0, tiebreak: true);
+            return new GameStateScores(IsMensPlay, Tournament, Sets, 4, 4);
+        }
+
+        public GameStateScores ClickSetScore(int setIx, bool isPlayer1)
+        {
+            if (setIx < Sets.Length)
+                return new GameStateScores(IsMensPlay, Tournament, Sets.Select((set, ix) => ix != setIx ? set : new SetScores(set.Player1Score + (isPlayer1 ? 1 : 0), set.Player2Score + (isPlayer1 ? 0 : 1))).ToArray(), Player1Score, Player2Score, IsTieBreak);
+            if (setIx == Sets.Length)
+                return new GameStateScores(IsMensPlay, Tournament, Sets.Concat(new[] { new SetScores() }).ToArray(), Player1Score, Player2Score, IsTieBreak);
+            return this;
+        }
+
+        public GameStateScores LongClickSetScore(int setIx)
+        {
+            if (setIx < Sets.Length)
+                return new GameStateScores(IsMensPlay, Tournament, Sets.Take(setIx).ToArray(), Player1Score, Player2Score, IsTieBreak);
+            return this;
+        }
+
         private static readonly string[] ScoreNames = new[] { "0", "15", "30", "40" };
         public override string ToString()
         {
@@ -100,14 +155,14 @@ public partial class TennisModule
             return string.Format("{4}•P{0} {1} {2}-{3}", IsPlayer1Serving ? "1" : "2", string.Join(" ", Sets.Select(s => s.ToString()).ToArray()), ScoreNames[Player1Score], ScoreNames[Player2Score], IsMensPlay ? "M" : "W");
         }
 
-        public override void Setup(TennisModule module, string name1, string name2)
+        public override void Setup(TennisModule module, TennisPlayer player1, TennisPlayer player2)
         {
             module.ScoresGroup.SetActive(true);
             module.TrophyGroup.SetActive(false);
             module.TieBreak.SetActive(IsTieBreak);
 
             module.Main.material.mainTexture = module.Courts[(int) Tournament];
-            if (IsTieBreak || Player1Score < 3 || Player2Score < 3 || (Player1Score == 3 && Player2Score == 3 && Tournament == Tournament.FrenchOpenRolandGarros))
+            if (IsTieBreak || (Player1Score != 4 && Player2Score != 4))
             {
                 module.GameScore1.SetActive(true);
                 module.GameScore2.SetActive(false);
@@ -119,8 +174,8 @@ public partial class TennisModule
                 module.GameScore1.SetActive(false);
                 module.GameScore2.SetActive(true);
                 module.GameScore2.transform.Find("Score").GetComponent<TextMesh>().text =
-                    Player1Score == 3 && Player2Score == 4 ? (Tournament == Tournament.FrenchOpenRolandGarros ? "Avantage\n" : "Advantage\n") + name2 :
-                    Player1Score == 4 && Player2Score == 3 ? (Tournament == Tournament.FrenchOpenRolandGarros ? "Avantage\n" : "Advantage\n") + name1 :
+                    Player1Score == 3 && Player2Score == 4 ? (Tournament == Tournament.FrenchOpenRolandGarros ? "Avantage\n" : "Advantage\n") + player2.Surname :
+                    Player1Score == 4 && Player2Score == 3 ? (Tournament == Tournament.FrenchOpenRolandGarros ? "Avantage\n" : "Advantage\n") + player1.Surname :
                     (Tournament == Tournament.FrenchOpenRolandGarros ? "Égalité" : "Deuce");
             }
 
@@ -130,22 +185,47 @@ public partial class TennisModule
                 module.SetScoresGroup.transform.Find("SetScore" + (i + 1)).Find("ScoreBox2").Find("Score").GetComponent<TextMesh>().text = i < Sets.Length ? Sets[i].Player2Score.ToString() : "";
             }
         }
+
+        public bool IsCorrect(GameState solution)
+        {
+            if (!(solution is GameStateScores))
+                return false;
+            var sol = (GameStateScores) solution;
+            if (Sets.Length != sol.Sets.Length)
+                return false;
+            for (int i = 0; i < Sets.Length; i++)
+                if (Sets[i].Player1Score != sol.Sets[i].Player1Score || Sets[i].Player2Score != sol.Sets[i].Player2Score)
+                    return false;
+            if (IsTieBreak != sol.IsTieBreak)
+                return false;
+
+            // Special case: outside of Roland Garros, 40–40 is supposed to be notated as Deuce
+            if (Tournament != Tournament.FrenchOpenRolandGarros && !IsTieBreak && sol.Player1Score == 3 && sol.Player2Score == 3)
+                return sol.Player1Score == 4 && sol.Player2Score == 4;
+            return Player1Score == sol.Player1Score && Player2Score == sol.Player2Score;
+        }
     }
     sealed class GameStateVictory : GameState
     {
         public bool Player1Wins;
 
-        public override void Setup(TennisModule module, string name1, string name2)
+        public override void Setup(TennisModule module, TennisPlayer player1, TennisPlayer player2)
         {
             module.ScoresGroup.SetActive(false);
             module.TrophyGroup.SetActive(true);
             module.TrophyGroup.transform.Find("Trophy").GetComponent<MeshRenderer>().material.mainTexture = module.Trophies[Rnd.Range(0, module.Trophies.Length)];
-            module.TrophyGroup.transform.Find("Winner").Find("Name").GetComponent<TextMesh>().text = Player1Wins ? name1 : name2;
+            module.TrophyGroup.transform.Find("Winner").Find("Name").GetComponent<TextMesh>().text = (Player1Wins ? player1 : player2).FullName;
         }
 
         public override string ToString()
         {
             return string.Format("Player {0} wins.", Player1Wins ? 1 : 2);
         }
+    }
+
+    sealed class TennisPlayer
+    {
+        public string FullName;
+        public string Surname;
     }
 }
