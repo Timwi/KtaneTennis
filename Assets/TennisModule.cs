@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using KModkit;
 using UnityEngine;
@@ -22,6 +23,7 @@ public partial class TennisModule : MonoBehaviour
     public GameObject GameScore2;   // Deuce/Advantage
     public GameObject SetScoresGroup;
     public GameObject TrophyGroup;
+    public GameObject TieBreak;
 
     private static int _moduleIdCounter = 1;
     private int _moduleId;

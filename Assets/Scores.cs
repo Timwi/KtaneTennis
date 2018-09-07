@@ -104,6 +104,7 @@ public partial class TennisModule
         {
             module.ScoresGroup.SetActive(true);
             module.TrophyGroup.SetActive(false);
+            module.TieBreak.SetActive(IsTieBreak);
 
             module.Main.material.mainTexture = module.Courts[(int) Tournament];
             if (IsTieBreak || Player1Score < 3 || Player2Score < 3 || (Player1Score == 3 && Player2Score == 3 && Tournament == Tournament.FrenchOpenRolandGarros))
