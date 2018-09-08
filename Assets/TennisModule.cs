@@ -19,7 +19,9 @@ public partial class TennisModule : MonoBehaviour
 
     public Texture[] Courts;
     public Texture[] Trophies;
+    public Texture[] TennisBalls;
     public MeshRenderer Main;
+    public MeshRenderer TennisBall;
     public GameObject ScoresGroup;
     public GameObject GameScore1;   // 30–15
     public GameObject GameScore2;   // Deuce/Advantage
@@ -85,7 +87,8 @@ public partial class TennisModule : MonoBehaviour
         var initialState = GameState.GetInitial(_isMensPlay, _tournament);
         for (int i = 0; i < max; i++)
         {
-            initialState = ((GameStateScores) initialState).PlayerScores(_rnd.NextDouble() <= player1Goodness);
+            var initialStateScore = (GameStateScores) initialState;
+            initialState = initialStateScore.PlayerScores((_rnd.NextDouble() > player1Goodness) ^ initialStateScore.IsPlayer1Serving);
             if (initialState is GameStateVictory)
             {
                 max /= 2;
@@ -134,7 +137,9 @@ public partial class TennisModule : MonoBehaviour
     {
         var player1Won = dictionary.ContainsKey(player1) && dictionary[player1].ContainsKey(player2) ? dictionary[player1][player2] : 0;
         var player2Won = dictionary.ContainsKey(player2) && dictionary[player2].ContainsKey(player1) ? dictionary[player2][player1] : 0;
-        return (player1Won + 1) / (double) (player1Won + player2Won + 2);
+        var result = (player1Won + 1) / (double) (player1Won + player2Won + 2);
+        Debug.LogFormat(@"<Tennis #{0}> Goodness of {1} over {2}: {3} vs. {4} = {5}", _moduleId, player1, player2, player1Won, player2Won, result);
+        return result;
     }
 
     private KMSelectable.OnInteractHandler MakeWinnerDelegate(KMSelectable btn, bool isPlayer1)
@@ -149,16 +154,34 @@ public partial class TennisModule : MonoBehaviour
             if (_solutionState is GameStateVictory && ((GameStateVictory) _solutionState).Player1Wins == isPlayer1)
             {
                 Debug.LogFormat(@"[Tennis #{0}] Module solved.", _moduleId);
+                _solutionState.Setup(this);
                 Module.HandlePass();
+                Audio.PlaySoundAtTransform(string.Format("Play{0}", Rnd.Range(1, 3)), transform);
+                StartCoroutine(delayedCheer());
+                TennisBall.material.mainTexture = TennisBalls[1];
                 _isSolved = true;
             }
             else
             {
                 Debug.LogFormat(@"[Tennis #{0}] You clicked {1}, which is incorrect.", _moduleId, isPlayer1 ? _player1 : _player2);
                 Module.HandleStrike();
+                TennisBall.material.mainTexture = TennisBalls[2];
+                StartCoroutine(resetTennisBall());
             }
             return false;
         };
+    }
+
+    private IEnumerator delayedCheer()
+    {
+        yield return new WaitForSeconds(.5f);
+        Audio.PlaySoundAtTransform("Crowd cheer", transform);
+    }
+
+    private IEnumerator resetTennisBall()
+    {
+        yield return new WaitForSeconds(1f);
+        TennisBall.material.mainTexture = TennisBalls[1];
     }
 
     private void SetDelegateForSetScore(KMSelectable btn, int set, bool isPlayer1)
@@ -202,6 +225,8 @@ public partial class TennisModule : MonoBehaviour
         {
             Debug.LogFormat(@"[Tennis #{0}] Module solved.", _moduleId);
             Module.HandlePass();
+            TennisBall.material.mainTexture = TennisBalls[1];
+            Audio.PlaySoundAtTransform(string.Format("Play{0}", Rnd.Range(1, 3)), transform);
             _isSolved = true;
         }
     }
