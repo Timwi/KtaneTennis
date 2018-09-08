@@ -281,6 +281,8 @@ MonoBehaviour:
   SetScoresGroup: {fileID: 1255158249978642}
   TrophyGroup: {fileID: 1433453685692686}
   TieBreak: {fileID: 1556864654686546}
+  Player1Display: {fileID: 102833906120233940}
+  Player2Display: {fileID: 102328676803335416}
   BtnsSetScores1:
   - {fileID: 114542946185775166}
   - {fileID: 114560920404889572}
@@ -4359,7 +4361,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1137464657604442}
-  m_Text: Roger Federer
+  m_Text: Sesil Karatantcheva
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -4380,16 +4382,14 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1421590747067212}
-  m_Text: 'Advantage
-
-    del Potro'
+  m_Text: "\xC9galit\xE9"
   m_OffsetZ: 0
   m_CharacterSize: 1
-  m_LineSpacing: 0.8
+  m_LineSpacing: 0.9
   m_Anchor: 4
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 96
+  m_FontSize: 128
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: 1b9d96592d34a5a47baecb199188fedb, type: 3}

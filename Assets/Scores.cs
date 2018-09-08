@@ -1,17 +1,10 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
+using Tennis;
 using UnityEngine;
 using Rnd = UnityEngine.Random;
 
 public partial class TennisModule
 {
-    enum Tournament
-    {
-        FrenchOpenRolandGarros, // Clay — reduced tie breaks, 40–40
-        USOpenFlushingMeadows, // Hardcourt — tie breaks in every set, always deuce
-        Wimbledon, // Lawn — reduced tie breaks, always deuce
-    }
-
     sealed class SetScores
     {
         public int Player1Score { get; private set; }
@@ -25,7 +18,7 @@ public partial class TennisModule
     abstract class GameState
     {
         public static GameState GetInitial(bool isMensPlay, Tournament tournament) { return new GameStateScores(isMensPlay, tournament, new SetScores[] { new SetScores() }); }
-        public abstract void Setup(TennisModule module, TennisPlayer player1, TennisPlayer player2);
+        public abstract void Setup(TennisModule module);
     }
     sealed class GameStateScores : GameState
     {
@@ -155,7 +148,7 @@ public partial class TennisModule
             return string.Format("{4}•P{0} {1} {2}-{3}", IsPlayer1Serving ? "1" : "2", string.Join(" ", Sets.Select(s => s.ToString()).ToArray()), ScoreNames[Player1Score], ScoreNames[Player2Score], IsMensPlay ? "M" : "W");
         }
 
-        public override void Setup(TennisModule module, TennisPlayer player1, TennisPlayer player2)
+        public override void Setup(TennisModule module)
         {
             module.ScoresGroup.SetActive(true);
             module.TrophyGroup.SetActive(false);
@@ -173,10 +166,22 @@ public partial class TennisModule
             {
                 module.GameScore1.SetActive(false);
                 module.GameScore2.SetActive(true);
+
+                var p1 = Data.ShortNames[module._player1];
+                var p2 = Data.ShortNames[module._player2];
+                var i = 0;
+                while (p1 == p2)
+                {
+                    i++;
+                    p1 = string.Format("{0}. {1}", module._player1.Substring(0, i), Data.ShortNames[module._player1]);
+                    p2 = string.Format("{0}. {1}", module._player2.Substring(0, i), Data.ShortNames[module._player2]);
+                }
+
                 module.GameScore2.transform.Find("Score").GetComponent<TextMesh>().text =
-                    Player1Score == 3 && Player2Score == 4 ? (Tournament == Tournament.FrenchOpenRolandGarros ? "Avantage\n" : "Advantage\n") + player2.Surname :
-                    Player1Score == 4 && Player2Score == 3 ? (Tournament == Tournament.FrenchOpenRolandGarros ? "Avantage\n" : "Advantage\n") + player1.Surname :
+                    Player1Score == 3 ? (Tournament == Tournament.FrenchOpenRolandGarros ? "Avantage\n" : "Advantage\n") + p2 :
+                    Player2Score == 3 ? (Tournament == Tournament.FrenchOpenRolandGarros ? "Avantage\n" : "Advantage\n") + p1 :
                     (Tournament == Tournament.FrenchOpenRolandGarros ? "Égalité" : "Deuce");
+                module.GameScore2.transform.Find("Score").GetComponent<TextMesh>().fontSize = Player1Score == 3 || Player2Score == 3 ? 80 : 128;
             }
 
             for (int i = 0; i < 5; i++)
@@ -209,23 +214,17 @@ public partial class TennisModule
     {
         public bool Player1Wins;
 
-        public override void Setup(TennisModule module, TennisPlayer player1, TennisPlayer player2)
+        public override void Setup(TennisModule module)
         {
             module.ScoresGroup.SetActive(false);
             module.TrophyGroup.SetActive(true);
             module.TrophyGroup.transform.Find("Trophy").GetComponent<MeshRenderer>().material.mainTexture = module.Trophies[Rnd.Range(0, module.Trophies.Length)];
-            module.TrophyGroup.transform.Find("Winner").Find("Name").GetComponent<TextMesh>().text = (Player1Wins ? player1 : player2).FullName;
+            module.TrophyGroup.transform.Find("Winner").Find("Name").GetComponent<TextMesh>().text = (Player1Wins ? module._player1 : module._player2);
         }
 
         public override string ToString()
         {
             return string.Format("Player {0} wins.", Player1Wins ? 1 : 2);
         }
-    }
-
-    sealed class TennisPlayer
-    {
-        public string FullName;
-        public string Surname;
     }
 }

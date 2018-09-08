@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using KModkit;
+using Tennis;
 using UnityEngine;
 using Rnd = UnityEngine.Random;
 
@@ -26,6 +27,9 @@ public partial class TennisModule : MonoBehaviour
     public GameObject TrophyGroup;
     public GameObject TieBreak;
 
+    public TextMesh Player1Display;
+    public TextMesh Player2Display;
+
     public KMSelectable[] BtnsSetScores1;
     public KMSelectable[] BtnsSetScores2;
     public KMSelectable BtnGameScore1;
@@ -39,8 +43,8 @@ public partial class TennisModule : MonoBehaviour
     private int _moduleId;
     private Tournament _tournament;
     private bool _isMensPlay;
-    private TennisPlayer _player1;
-    private TennisPlayer _player2;
+    private string _player1;
+    private string _player2;
     private GameStateScores _initialState;
     private GameStateScores _currentState;
     private GameState _solutionState;
@@ -48,24 +52,44 @@ public partial class TennisModule : MonoBehaviour
 
     void Start()
     {
-        _moduleId = _moduleIdCounter++;
-        _tournament = (Tournament) Rnd.Range(0, 3);
-        _isMensPlay = Rnd.Range(0, 2) != 0;
+        var _rnd = new System.Random(Rnd.Range(0, int.MaxValue));
 
-        Debug.LogFormat(@"[Tennis #{0}] Welcome to the {1}’s final here at {2}.", _moduleId, _isMensPlay ? "men" : "women",
+        _moduleId = _moduleIdCounter++;
+        _tournament = (Tournament) _rnd.Next(0, 3);
+        _isMensPlay = _rnd.Next(0, 2) != 0;
+
+        var players = Data.All[_tournament][_isMensPlay].Keys.ToArray();
+        _player1 = players[_rnd.Next(0, players.Length)];
+        var opponents = Data.All[_tournament][_isMensPlay][_player1].Keys.ToArray();
+        _player2 = opponents[_rnd.Next(0, opponents.Length)];
+        var player1Goodness = calcGoodness(Data.All[_tournament][_isMensPlay], _player1, _player2);
+        if (_rnd.Next(0, 2) == 0)
+        {
+            var t = _player1;
+            _player1 = _player2;
+            _player2 = t;
+            player1Goodness = 1 - player1Goodness;
+        }
+
+        Debug.LogFormat(@"[Tennis #{0}] Welcome to the {1}’s singles final here at {2}.", _moduleId, _isMensPlay ? "men" : "women",
             _tournament == Tournament.FrenchOpenRolandGarros ? "the French Open Roland-Garros" :
             _tournament == Tournament.USOpenFlushingMeadows ? "the US Open at Flushing Meadows" :
             _tournament == Tournament.Wimbledon ? "The Championships, Wimbledon" : "some ghost tournament that nobody realizes exists");
 
-        var max = _isMensPlay ? Rnd.Range(110, 150) : Rnd.Range(65, 80);
+        Debug.LogFormat(@"[Tennis #{0}] Playing: {1} vs. {2}.", _moduleId, _player1, _player2);
+        Player1Display.text = _player1;
+        Player2Display.text = _player2;
+
+        var max = _isMensPlay ? _rnd.Next(110, 150) : _rnd.Next(65, 80);
         tryAgain:
         var initialState = GameState.GetInitial(_isMensPlay, _tournament);
         for (int i = 0; i < max; i++)
         {
-            initialState = ((GameStateScores) initialState).PlayerScores(Rnd.Range(0, 2) == 1);
+            initialState = ((GameStateScores) initialState).PlayerScores(_rnd.NextDouble() <= player1Goodness);
             if (initialState is GameStateVictory)
             {
                 max /= 2;
+                player1Goodness = (player1Goodness + .5) / 2;
                 goto tryAgain;
             }
         }
@@ -73,10 +97,7 @@ public partial class TennisModule : MonoBehaviour
         Debug.LogFormat(@"[Tennis #{0}] Initial score: {1}", _moduleId, initialState);
 
         _solutionState = _currentState = _initialState;
-        _player1 = new TennisPlayer { FullName = "Roger Federer", Surname = "Federer" };
-        _player2 = new TennisPlayer { FullName = "Novak Djokovic", Surname = "Djokovic" };
-
-        _currentState.Setup(this, _player1, _player2);
+        _currentState.Setup(this);
 
         var serial = Bomb.GetSerialNumber();
         var binary = new List<bool>();
@@ -109,6 +130,13 @@ public partial class TennisModule : MonoBehaviour
         BtnPlayer2.OnInteract = MakeWinnerDelegate(BtnPlayer2, false);
     }
 
+    private double calcGoodness(Dictionary<string, Dictionary<string, int>> dictionary, string player1, string player2)
+    {
+        var player1Won = dictionary.ContainsKey(player1) && dictionary[player1].ContainsKey(player2) ? dictionary[player1][player2] : 0;
+        var player2Won = dictionary.ContainsKey(player2) && dictionary[player2].ContainsKey(player1) ? dictionary[player2][player1] : 0;
+        return (player1Won + 1) / (double) (player1Won + player2Won + 2);
+    }
+
     private KMSelectable.OnInteractHandler MakeWinnerDelegate(KMSelectable btn, bool isPlayer1)
     {
         return delegate
@@ -126,7 +154,7 @@ public partial class TennisModule : MonoBehaviour
             }
             else
             {
-                Debug.LogFormat(@"[Tennis #{0}] You clicked {1}, which is incorrect.", _moduleId, isPlayer1 ? _player1.FullName : _player2.FullName);
+                Debug.LogFormat(@"[Tennis #{0}] You clicked {1}, which is incorrect.", _moduleId, isPlayer1 ? _player1 : _player2);
                 Module.HandleStrike();
             }
             return false;
@@ -169,7 +197,7 @@ public partial class TennisModule : MonoBehaviour
     private void executeStateChange(Func<GameStateScores, GameStateScores> stateChange)
     {
         _currentState = stateChange(_currentState);
-        _currentState.Setup(this, _player1, _player2);
+        _currentState.Setup(this);
         if (_currentState.IsCorrect(_solutionState))
         {
             Debug.LogFormat(@"[Tennis #{0}] Module solved.", _moduleId);
