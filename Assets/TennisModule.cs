@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using KModkit;
 using Tennis;
 using UnityEngine;
@@ -135,11 +136,13 @@ public partial class TennisModule : MonoBehaviour
 
     private double calcGoodness(Dictionary<string, Dictionary<string, int>> dictionary, string player1, string player2)
     {
+        // There’s no real purpose in this, but the idea here is that if Player 1 has beaten Player 2 more times than not,
+        // Player 1 should actually be better and thus the initial score on the module should be skewed towards one
+        // in which Player 1 is in the lead. So we’re calculating a crude probability of winning any particular rally and
+        // use that probability to generate the module’s initial score.
         var player1Won = dictionary.ContainsKey(player1) && dictionary[player1].ContainsKey(player2) ? dictionary[player1][player2] : 0;
         var player2Won = dictionary.ContainsKey(player2) && dictionary[player2].ContainsKey(player1) ? dictionary[player2][player1] : 0;
-        var result = (player1Won + 1) / (double) (player1Won + player2Won + 2);
-        Debug.LogFormat(@"<Tennis #{0}> Goodness of {1} over {2}: {3} vs. {4} = {5}", _moduleId, player1, player2, player1Won, player2Won, result);
-        return result;
+        return (player1Won + 1) / (double) (player1Won + player2Won + 2);
     }
 
     private KMSelectable.OnInteractHandler MakeWinnerDelegate(KMSelectable btn, bool isPlayer1)
@@ -236,5 +239,56 @@ public partial class TennisModule : MonoBehaviour
         yield return new WaitForSeconds(.5f);
         if (stillActive())
             executeStateChange(longClick);
+    }
+
+#pragma warning disable 414
+    private readonly string TwitchHelpMessage = @"Use “!{0} command command command”. Valid commands are: “P1”/“P2” = player names up top. “R” = tennis racket. “S1”/“S2” = game score boxes for player 1/player 2 (only valid when deuce/advantage is not in effect). “S” = deuce/advantage box. “S11”/“S12” = first set score box (player 1/player 2), “S21”/“S22” = second set, etc. Prefix a button name with “L” for a long press, e.g. “LR” = long press on the racket.";
+#pragma warning restore 414
+
+    sealed class TPCommand
+    {
+        public KMSelectable Button { get; private set; }
+        public bool LongPress { get; private set; }
+        public TPCommand(KMSelectable btn, bool longPress) { Button = btn; LongPress = longPress; }
+    }
+    IEnumerator ProcessTwitchCommand(string command)
+    {
+        var list = new List<TPCommand>();
+        foreach (var pieceRaw in command.ToLowerInvariant().Split(new[] { ' ', ',', ';' }, StringSplitOptions.RemoveEmptyEntries))
+        {
+            var piece = pieceRaw;
+            var longPress = false;
+            if (piece.StartsWith("l"))
+            {
+                longPress = true;
+                piece = piece.Substring(1);
+            }
+            KMSelectable button;
+            switch (piece)
+            {
+                case "p1": button = BtnPlayer1; longPress = false; break;
+                case "p2": button = BtnPlayer2; longPress = false; break;
+                case "r": button = BtnRacket; break;
+                case "s1": button = BtnGameScore1; break;
+                case "s2": button = BtnGameScore2; break;
+                case "s": button = BtnGameScore3; break;
+                default:
+                    var m = Regex.Match(piece, @"^s([1-5])([12])$");
+                    if (!m.Success)
+                        yield break;
+                    button = (m.Groups[2].Value == "1" ? BtnsSetScores1 : BtnsSetScores2)[int.Parse(m.Groups[1].Value) - 1];
+                    break;
+            }
+            list.Add(new TPCommand(button, longPress));
+        }
+
+        foreach (var cmd in list)
+        {
+            yield return null;
+            yield return cmd.Button;
+            yield return new WaitForSeconds(cmd.LongPress ? 1f : .1f);
+            yield return cmd.Button;
+            yield return new WaitForSeconds(.1f);
+        }
     }
 }
