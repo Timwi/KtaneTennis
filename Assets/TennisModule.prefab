@@ -266,9 +266,9 @@ MonoBehaviour:
   Module: {fileID: 11429752}
   Audio: {fileID: 11496072}
   Courts:
-  - {fileID: 2800000, guid: 7c750e4a77b4e9642ad129538675e31f, type: 3}
-  - {fileID: 2800000, guid: 43df8a3666450b348a207f5ccd5ffa39, type: 3}
   - {fileID: 2800000, guid: aabfeb5bac2cf984697f557b6ffb9805, type: 3}
+  - {fileID: 2800000, guid: 43df8a3666450b348a207f5ccd5ffa39, type: 3}
+  - {fileID: 2800000, guid: 7c750e4a77b4e9642ad129538675e31f, type: 3}
   Trophies:
   - {fileID: 2800000, guid: 97fe096f8b0f48546af83b41b42ac847, type: 3}
   - {fileID: 2800000, guid: ec8e3f421a11c2648abce24dcfa12333, type: 3}
@@ -456,7 +456,7 @@ GameObject:
   - component: {fileID: 4776582908963216}
   - component: {fileID: 114665575995879014}
   m_Layer: 0
-  m_Name: ScoreBox1
+  m_Name: Set4ScoreBox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -508,7 +508,7 @@ GameObject:
   - component: {fileID: 4959708618347522}
   - component: {fileID: 114542946185775166}
   m_Layer: 0
-  m_Name: ScoreBox1
+  m_Name: Set1ScoreBox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -765,7 +765,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4875579277899452}
   m_Layer: 0
-  m_Name: SetScore4
+  m_Name: Set4Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -795,7 +795,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4576855388685596}
   m_Layer: 0
-  m_Name: SetScore2
+  m_Name: Set2Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -810,7 +810,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4861211768530620}
   m_Layer: 0
-  m_Name: SetScore1
+  m_Name: Set1Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -844,7 +844,7 @@ GameObject:
   - component: {fileID: 4440337702893628}
   - component: {fileID: 114332986755384944}
   m_Layer: 0
-  m_Name: ScoreBox2
+  m_Name: Set1ScoreBox2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -997,7 +997,7 @@ GameObject:
   - component: {fileID: 4524922228258234}
   - component: {fileID: 114938121817383732}
   m_Layer: 0
-  m_Name: ScoreBox2
+  m_Name: Set2ScoreBox2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1044,7 +1044,7 @@ GameObject:
   - component: {fileID: 4272644476164716}
   - component: {fileID: 114867695736803510}
   m_Layer: 0
-  m_Name: ScoreBox2
+  m_Name: Set3ScoreBox2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1076,7 +1076,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4038802127930390}
   m_Layer: 0
-  m_Name: SetScore5
+  m_Name: Set5Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1211,7 +1211,7 @@ GameObject:
   - component: {fileID: 4919413783300492}
   - component: {fileID: 114605898036204576}
   m_Layer: 0
-  m_Name: ScoreBox1
+  m_Name: Set5ScoreBox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1227,7 +1227,7 @@ GameObject:
   - component: {fileID: 4565186907366380}
   - component: {fileID: 114438985737771876}
   m_Layer: 0
-  m_Name: ScoreBox1
+  m_Name: Set3ScoreBox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1416,7 +1416,7 @@ GameObject:
   - component: {fileID: 4905807979035716}
   - component: {fileID: 114560920404889572}
   m_Layer: 0
-  m_Name: ScoreBox1
+  m_Name: Set2ScoreBox1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1431,7 +1431,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4813020715230362}
   m_Layer: 0
-  m_Name: SetScore3
+  m_Name: Set3Score
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1514,7 +1514,7 @@ GameObject:
   - component: {fileID: 4357443083689022}
   - component: {fileID: 114926116555807622}
   m_Layer: 0
-  m_Name: ScoreBox2
+  m_Name: Set4ScoreBox2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1656,7 +1656,7 @@ GameObject:
   - component: {fileID: 4920943903300272}
   - component: {fileID: 114287892472254930}
   m_Layer: 0
-  m_Name: ScoreBox2
+  m_Name: Set5ScoreBox2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

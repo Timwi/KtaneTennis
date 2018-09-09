@@ -186,8 +186,8 @@ public partial class TennisModule
 
             for (int i = 0; i < 5; i++)
             {
-                module.SetScoresGroup.transform.Find("SetScore" + (i + 1)).Find("ScoreBox1").Find("Score").GetComponent<TextMesh>().text = i < Sets.Length ? Sets[i].Player1Score.ToString() : "";
-                module.SetScoresGroup.transform.Find("SetScore" + (i + 1)).Find("ScoreBox2").Find("Score").GetComponent<TextMesh>().text = i < Sets.Length ? Sets[i].Player2Score.ToString() : "";
+                module.SetScoresGroup.transform.Find(string.Format("Set{0}Score", i + 1)).Find(string.Format("Set{0}ScoreBox1", i + 1)).Find("Score").GetComponent<TextMesh>().text = i < Sets.Length ? Sets[i].Player1Score.ToString() : "";
+                module.SetScoresGroup.transform.Find(string.Format("Set{0}Score", i + 1)).Find(string.Format("Set{0}ScoreBox2", i + 1)).Find("Score").GetComponent<TextMesh>().text = i < Sets.Length ? Sets[i].Player2Score.ToString() : "";
             }
         }
 
