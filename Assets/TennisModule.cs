@@ -83,7 +83,7 @@ public partial class TennisModule : MonoBehaviour
         Player1Display.text = _player1;
         Player2Display.text = _player2;
 
-        var max = _isMensPlay ? _rnd.Next(110, 150) : _rnd.Next(65, 80);
+        var max = _isMensPlay ? _rnd.Next(55, 95) : _rnd.Next(35, 55);
         tryAgain:
         var initialState = GameState.GetInitial(_isMensPlay, _tournament);
         for (int i = 0; i < max; i++)
@@ -115,11 +115,16 @@ public partial class TennisModule : MonoBehaviour
                 num = 6 + ch - 'A';
             binary.AddRange(Enumerable.Range(0, 5).Select(j => ((1 << (4 - j)) & num) != 0));
         }
+        var logLines = new List<string>();
         for (int i = 0; i < binary.Count && !(_solutionState is GameStateVictory); i++)
         {
             _solutionState = ((GameStateScores) _solutionState).PlayerScores(binary[i]);
-            Debug.LogFormat(@"[Tennis #{0}] {1} → {2}", _moduleId, binary[i] ? "1=srv" : "0=opp", _solutionState);
+            logLines.Add(string.Format(@"[Tennis #{0}] {1} → {2}", _moduleId, binary[i] ? "1=srv" : "0=opp", _solutionState));
         }
+        if (_solutionState is GameStateVictory && (((GameStateVictory) _solutionState).Player1Wins ? _player1 : _player2) == "Serena Williams")
+            goto tryAgain;
+        foreach (var line in logLines)
+            Debug.Log(line);
 
         for (int i = 0; i < 5; i++)
         {
