@@ -98,7 +98,6 @@ public partial class TennisModule : MonoBehaviour
             }
         }
         _initialState = ((GameStateScores) initialState).Normalize();
-        Debug.LogFormat(@"[Tennis #{0}] Initial score: {1}", _moduleId, initialState);
 
         _solutionState = _currentState = _initialState;
         _currentState.Setup(this);
@@ -123,6 +122,8 @@ public partial class TennisModule : MonoBehaviour
         }
         if (_solutionState is GameStateVictory && (((GameStateVictory) _solutionState).Player1Wins ? _player1 : _player2) == "Serena Williams")
             goto tryAgain;
+
+        Debug.LogFormat(@"[Tennis #{0}] Initial score: {1}", _moduleId, initialState);
         foreach (var line in logLines)
             Debug.Log(line);
 
