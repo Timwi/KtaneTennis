@@ -206,7 +206,7 @@ public partial class TennisModule
 
             // Special case: outside of Roland Garros, 40–40 is supposed to be notated as Deuce
             if (Tournament != Tournament.FrenchOpenRolandGarros && !IsTieBreak && sol.Player1Score == 3 && sol.Player2Score == 3)
-                return sol.Player1Score == 4 && sol.Player2Score == 4;
+                return Player1Score == 4 && Player2Score == 4;
             return Player1Score == sol.Player1Score && Player2Score == sol.Player2Score;
         }
     }
