@@ -138,14 +138,14 @@ public partial class TennisModule
         public override string ToString()
         {
             if (IsTieBreak)
-                return string.Format("{4}•P{0} {1} Tie break {2}-{3}", IsPlayer1Serving ? "1" : "2", string.Join(" ", Sets.Select(s => s.ToString()).ToArray()), Player1Score, Player2Score, IsMensPlay ? "M" : "W");
+                return string.Format("•P{0} {1} Tie break {2}-{3}", IsPlayer1Serving ? "1" : "2", string.Join(" ", Sets.Select(s => s.ToString()).ToArray()), Player1Score, Player2Score);
             if (Player1Score == 4 && Player2Score == 4 || (Player1Score == 3 && Player2Score == 3 && Tournament != Tournament.FrenchOpenRolandGarros))
-                return string.Format("{2}•P{0} {1} Deuce", IsPlayer1Serving ? "1" : "2", string.Join(" ", Sets.Select(s => s.ToString()).ToArray()), IsMensPlay ? "M" : "W");
+                return string.Format("•P{0} {1} Deuce", IsPlayer1Serving ? "1" : "2", string.Join(" ", Sets.Select(s => s.ToString()).ToArray()));
             if (Player1Score == 4)
-                return string.Format("{2}•P{0} {1} Advantage Player 1", IsPlayer1Serving ? "1" : "2", string.Join(" ", Sets.Select(s => s.ToString()).ToArray()), IsMensPlay ? "M" : "W");
+                return string.Format("•P{0} {1} Advantage Player 1", IsPlayer1Serving ? "1" : "2", string.Join(" ", Sets.Select(s => s.ToString()).ToArray()));
             if (Player2Score == 4)
-                return string.Format("{2}•P{0} {1} Advantage Player 2", IsPlayer1Serving ? "1" : "2", string.Join(" ", Sets.Select(s => s.ToString()).ToArray()), IsMensPlay ? "M" : "W");
-            return string.Format("{4}•P{0} {1} {2}-{3}", IsPlayer1Serving ? "1" : "2", string.Join(" ", Sets.Select(s => s.ToString()).ToArray()), ScoreNames[Player1Score], ScoreNames[Player2Score], IsMensPlay ? "M" : "W");
+                return string.Format("•P{0} {1} Advantage Player 2", IsPlayer1Serving ? "1" : "2", string.Join(" ", Sets.Select(s => s.ToString()).ToArray()));
+            return string.Format("•P{0} {1} {2}-{3}", IsPlayer1Serving ? "1" : "2", string.Join(" ", Sets.Select(s => s.ToString()).ToArray()), ScoreNames[Player1Score], ScoreNames[Player2Score]);
         }
 
         public override void Setup(TennisModule module)

@@ -117,6 +117,8 @@ public partial class TennisModule : MonoBehaviour
         var logLines = new List<string>();
         for (int i = 0; i < binary.Count && !(_solutionState is GameStateVictory); i++)
         {
+            if (i % 5 == 0)
+                logLines.Add(string.Format(@"[Tennis #{0}] {1} = {2}", _moduleId, serial[i / 5], string.Join("", binary.Skip(i).Take(5).Select(b => b ? "1" : "0").ToArray())));
             _solutionState = ((GameStateScores) _solutionState).PlayerScores(binary[i]);
             logLines.Add(string.Format(@"[Tennis #{0}] {1} → {2}", _moduleId, binary[i] ? "1=srv" : "0=opp", _solutionState));
         }
