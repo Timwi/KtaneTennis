@@ -299,4 +299,96 @@ public partial class TennisModule : MonoBehaviour
             yield return new WaitForSeconds(.1f);
         }
     }
+
+    IEnumerator TwitchHandleForcedSolve()
+    {
+        var v = _solutionState as GameStateVictory;
+        if (v != null)
+        {
+            (v.Player1Wins ? BtnPlayer1 : BtnPlayer2).OnInteract();
+            yield return new WaitForSeconds(.1f);
+        }
+        else
+        {
+            BtnRacket.OnInteract();
+            yield return new WaitForSeconds(1f);
+            BtnRacket.OnInteractEnded();
+
+            var scores = _solutionState as GameStateScores;
+            for (var i = 0; i < scores.Sets.Length; i++)
+            {
+                while (_currentState.Sets.Length <= i || _currentState.Sets[i].Player1Score < scores.Sets[i].Player1Score)
+                {
+                    BtnsSetScores1[i].OnInteract();
+                    yield return new WaitForSeconds(.1f);
+                    BtnsSetScores1[i].OnInteractEnded();
+                }
+                while (_currentState.Sets[i].Player2Score < scores.Sets[i].Player2Score)
+                {
+                    BtnsSetScores2[i].OnInteract();
+                    yield return new WaitForSeconds(.1f);
+                    BtnsSetScores2[i].OnInteractEnded();
+                }
+            }
+
+            if (scores.IsTieBreak)
+            {
+                while (!_currentState.IsTieBreak)
+                {
+                    BtnRacket.OnInteract();
+                    yield return new WaitForSeconds(.1f);
+                    BtnRacket.OnInteractEnded();
+                }
+                while (_currentState.Player1Score < scores.Player1Score)
+                {
+                    BtnGameScore1.OnInteract();
+                    yield return new WaitForSeconds(.1f);
+                    BtnGameScore1.OnInteractEnded();
+                }
+                while (_currentState.Player2Score < scores.Player2Score)
+                {
+                    BtnGameScore2.OnInteract();
+                    yield return new WaitForSeconds(.1f);
+                    BtnGameScore2.OnInteractEnded();
+                }
+            }
+            // In normal play: [0,2] = 0–30; or [3,3] = 40–40; [4,3] = advantage Player 1; [4,4] = deuce
+            else if (scores.Player1Score == 4 || scores.Player2Score == 4)
+            {
+                while ((_currentState.Player1Score != 4 && _currentState.Player2Score != 4) || _currentState.IsTieBreak)
+                {
+                    BtnRacket.OnInteract();
+                    yield return new WaitForSeconds(.1f);
+                    BtnRacket.OnInteractEnded();
+                }
+                while (_currentState.Player1Score != scores.Player1Score || _currentState.Player2Score != scores.Player2Score)
+                {
+                    BtnGameScore3.OnInteract();
+                    yield return new WaitForSeconds(.1f);
+                    BtnGameScore3.OnInteractEnded();
+                }
+            }
+            else
+            {
+                while (_currentState.Player1Score == 4 || _currentState.Player2Score == 4 || _currentState.IsTieBreak)
+                {
+                    BtnRacket.OnInteract();
+                    yield return new WaitForSeconds(.1f);
+                    BtnRacket.OnInteractEnded();
+                }
+                while (_currentState.Player1Score != scores.Player1Score)
+                {
+                    BtnGameScore1.OnInteract();
+                    yield return new WaitForSeconds(.1f);
+                    BtnGameScore1.OnInteractEnded();
+                }
+                while (_currentState.Player2Score != scores.Player2Score)
+                {
+                    BtnGameScore2.OnInteract();
+                    yield return new WaitForSeconds(.1f);
+                    BtnGameScore2.OnInteractEnded();
+                }
+            }
+        }
+    }
 }
