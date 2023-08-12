@@ -91,7 +91,7 @@ public partial class TennisModule
         public GameStateScores ClickGameScore(bool isPlayer1)
         {
             if (IsTieBreak)
-                return new GameStateScores(IsMensPlay, Tournament, Sets, Player1Score + (isPlayer1 ? 1 : 0), Player2Score + (isPlayer1 ? 0 : 1), tiebreak: true);
+                return new GameStateScores(IsMensPlay, Tournament, Sets, Player1Score + (isPlayer1 && Player1Score < 99 ? 1 : 0), Player2Score + (!isPlayer1 && Player2Score < 99 ? 1 : 0), tiebreak: true);
             return new GameStateScores(IsMensPlay, Tournament, Sets, (Player1Score + (isPlayer1 ? 1 : 0)) % 4, (Player2Score + (isPlayer1 ? 0 : 1)) % 4);
         }
 
@@ -121,7 +121,7 @@ public partial class TennisModule
         public GameStateScores ClickSetScore(int setIx, bool isPlayer1)
         {
             if (setIx < Sets.Length)
-                return new GameStateScores(IsMensPlay, Tournament, Sets.Select((set, ix) => ix != setIx ? set : new SetScores(set.Player1Score + (isPlayer1 ? 1 : 0), set.Player2Score + (isPlayer1 ? 0 : 1))).ToArray(), Player1Score, Player2Score, IsTieBreak);
+                return new GameStateScores(IsMensPlay, Tournament, Sets.Select((set, ix) => ix != setIx ? set : new SetScores(set.Player1Score + (isPlayer1 && set.Player1Score < 99 ? 1 : 0), set.Player2Score + (!isPlayer1 && set.Player2Score < 99 ? 1 : 0))).ToArray(), Player1Score, Player2Score, IsTieBreak);
             if (setIx == Sets.Length)
                 return new GameStateScores(IsMensPlay, Tournament, Sets.Concat(new[] { new SetScores() }).ToArray(), Player1Score, Player2Score, IsTieBreak);
             return this;

@@ -122,6 +122,8 @@ public partial class TennisModule : MonoBehaviour
             _solutionState = ((GameStateScores) _solutionState).PlayerScores(binary[i]);
             logLines.Add(string.Format(@"[Tennis #{0}] {1} → {2}", _moduleId, binary[i] ? "1=srv" : "0=opp", _solutionState));
         }
+        if (_solutionState is GameStateScores && (((GameStateScores) _solutionState).Player1Score > 99 || ((GameStateScores) _solutionState).Player2Score > 99))
+            goto tryAgain;
         if (_solutionState is GameStateVictory && (((GameStateVictory) _solutionState).Player1Wins ? _player1 : _player2) == "Serena Williams")
             goto tryAgain;
 
