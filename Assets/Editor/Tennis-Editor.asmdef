@@ -1,0 +1,10 @@
+{
+  "name": "Tennis-Editor",
+  "references": [
+    "Tennis"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "excludePlatforms": []
+}
