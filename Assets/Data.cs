@@ -6,570 +6,12 @@ namespace Tennis
     static class Data
     {
         public static Dictionary<Tournament, Dictionary<bool, Dictionary<string, Dictionary<string, int>>>> All;
-        public static Dictionary<string, string> ShortNames = @"
-Aaron Krickstein=Krickstein
-Adrian Voinea=Voinea
-Adriano Panatta=Panatta
-Ágnes Szávay=Szávay
-Agnieszka Radwańska=Radwańska
-Ai Sugiyama=Sugiyama
-Albert Costa=Costa
-Albert Ramos-Viñolas=Ramos-Viñolas
-Alberto Berasategui=Berasategui
-Alberto Mancini=Mancini
-Àlex Corretja=Corretja
-Alex Metreveli=Metreveli
-Alex Rădulescu=Rădulescu
-Alexander Popp=Popp
-Alexander Volkov=Volkov
-Alexander Zverev=Zverev
-Alexandra Stevenson=Stevenson
-Alison Van Uytvanck=Uytvanck
-Amanda Coetzer=Coetzer
-Amélie Mauresmo=Mauresmo
-Amy Frazier=Frazier
-Ana Ivanovic=Ivanovic
-Ana Konjuh=Konjuh
-Anastasia Myskina=Myskina
-Anastasija Sevastova=Sevastova
-Anders Järryd=Järryd
-Andre Agassi=Agassi
-André Sá=Sá
-Andrea Jaeger=Jaeger
-Andrea Petkovic=Petkovic
-Andrei Cherkasov=Cherkasov
-Andrei Chesnokov=Chesnokov
-Andrei Medvedev=Medvedev
-Andrei Pavel=Pavel
-Andrés Gimeno=Gimeno
-Andrés Gómez=Gómez
-Andrew Pattison=Pattison
-Andrey Rublev=Rublev
-Andriy Medvedev=Medvedev
-Andy Murray=Murray
-Andy Roddick=Roddick
-Angelique Kerber=Kerber
-Anke Huber=Huber
-Ann Haydon-Jones=Haydon-Jones
-Ann Jones=Jones
-Anna Chakvetadze=Chakvetadze
-Anna Kournikova=Kournikova
-Anna-Lena Grönefeld=Grönefeld
-Anne Smith=Smith
-Annette Van Zyl=Van Zyl
-Arantxa Sánchez=Sánchez
-Arnaud Clément=Clément
-Arthur Ashe=Ashe
-Balázs Taróczy=Taróczy
-Barbara Gerken=Gerken
-Barbara Hallquist=Hallquist
-Barbara Potter=Potter
-Barbara Schett=Schett
-Barbara Schwartz=Schwartz
-Barbora Strýcová=Strýcová
-Belinda Bencic=Bencic
-Bernard Tomic=Tomic
-Bernd Karbacher=Karbacher
-Bettina Bunge=Bunge
-Bettina Fulco=Fulco
-Betty Stöve=Stöve
-Bill Scanlon=Scanlon
-Billie Jean King=King
-Billy Martin=Martin
-Björn Borg=Borg
-Bob Carmichael=Carmichael
-Bonnie Gadusek=Gadusek
-Boris Becker=Becker
-Boro Jovanović=Jovanović
-Brad Gilbert=Gilbert
-Brad Pearce=Pearce
-Brian Fairlie=Fairlie
-Brian Gottfried=Gottfried
-Brian Teacher=Teacher
-Brigitte Simon=Simon
-Bruce Manson=Manson
-Butch Buchholz=Buchholz
-Butch Walts=Walts
-Byron Bertram=Bertram
-Byron Black=Black
-Camila Giorgi=Giorgi
-Camille Benjamin=Benjamin
-Carina Karlsson=Karlsson
-Carla Suárez Navarro=Suárez
-Carling Bassett=Bassett
-Carlos Moyà=Moyà
-Caroline Garcia=Garcia
-Caroline Wozniacki=Wozniacki
-Catarina Lindqvist=Lindqvist
-Cédric Pioline=Pioline
-Chanda Rubin=Rubin
-Charlie Pasarell=Pasarell
-Chris Evert=Evert
-Chris Lewis=Lewis
-Christian Bergström=Bergström
-Cici Martinez=Martinez
-Clarisa Fernández=Fernández
-Clark Graebner=Graebner
-Claudia Kohde-Kilsch=Kohde-Kilsch
-Cliff Drysdale=Drysdale
-Cliff Richey=Richey
-CoCo Vandeweghe=Vandeweghe
-Colin Dibley=Dibley
-Conchita Martínez=Martínez
-Corinne Molesworth=Molesworth
-Corrado Barazzutti=Barazzutti
-Dája Bedáňová=Bedáňová
-Dan Goldie=Goldie
-Daniela Hantuchová=Hantuchová
-Daria Kasatkina=Kasatkina
-Darren Cahill=Cahill
-David Ferrer=Ferrer
-David Goffin=Goffin
-David Nalbandian=Nalbandian
-David Wheaton=Wheaton
-Davide Sanguinetti=Sanguinetti
-Denisa Chládková=Chládková
-Dennis Ralston=Ralston
-Derrick Rostagno=Rostagno
-Dianne Fromholtz=Fromholtz
-Dick Stockton=Stockton
-Diego Schwartzman=Schwartzman
-Dinara Safina=Safina
-Dominic Thiem=Thiem
-Dominik Hrbatý=Hrbatý
-Dominika Cibulková=Cibulková
-Donna Ganz=Ganz
-Earl Butch Buchholz=Buchholz
-Eddie Dibbs=Dibbs
-Ekaterina Makarova=Makarova
-Elena Bovina=Bovina
-Elena Dementieva=Dementieva
-Elena Likhovtseva=Likhovtseva
-Elena Subirats=Subirats
-Elena Vesnina=Vesnina
-Elina Svitolina=Svitolina
-Eliot Teltscher=Teltscher
-Emilio Sánchez=Sánchez
-Ernests Gulbis=Gulbis
-Eugenie Bouchard=Bouchard
-Éva Szabó=Szabó
-Evonne Cawley=Cawley
-Evonne Goolagong=Goolagong
-Fabio Fognini=Fognini
-Feliciano López=López
-Félix Mantilla Botella=Mantilla
-Fernando González=González
-Fernando Meligeni=Meligeni
-Fernando Verdasco=Verdasco
-Filip Dewulf=Dewulf
-Fiorella Bonicelli=Bonicelli
-Flavia Pennetta=Pennetta
-Florența Mihai=Mihai
-Florian Mayer=Mayer
-Francesca Schiavone=Schiavone
-Franco Davín=Davín
-Franco Squillari=Squillari
-François Jauffret=Jauffret
-Françoise Dürr=Dürr
-Frank Froehling=Froehling
-Fred Stolle=Stolle
-Frew McMillan=McMillan
-Gabriela Sabatini=Sabatini
-Gaël Monfils=Monfils
-Gail Chanfreau=Chanfreau
-Galo Blanco=Blanco
-Garbiñe Muguruza=Muguruza
-Gastón Gaudio=Gaudio
-Gene Mayer=Mayer
-Georges Goven=Goven
-Gigi Fernández=Fernández
-Gilles Müller=Müller
-Gilles Simon=Simon
-Goran Ivanišević=Ivanišević
-Goran Prpić=Prpić
-Greer Stevens=Stevens
-Greg Rusedski=Rusedski
-Gretchen Rush=Rush
-Grigor Dimitrov=Dimitrov
-Guillermo Cañas=Cañas
-Guillermo Coria=Coria
-Guillermo Pérez Roldán=Pérez Roldán
-Guillermo Vilas=Vilas
-Gustavo Kuerten=Kuerten
-Guy Forget=Forget
-Hana Mandlíková=Mandlíková
-Hans Gildemeister=Gildemeister
-Harold Solomon=Solomon
-Heinz Günthardt=Günthardt
-Helen Gourlay=Gourlay
-Helen Kelesi=Kelesi
-Helena Suková=Suková
-Helga Masthoff=Masthoff
-Helga Niessen=Niessen
-Hendrik Dreekmann=Dreekmann
-Henri Leconte=Leconte
-Henrik Sundström=Sundström
-Hicham Arazi=Arazi
-Igor Andreev=Andreev
-Ilie Năstase=Năstase
-Inés Gorrochategui=Gorrochategui
-Ion Țiriac=Țiriac
-Irina Spîrlea=Spîrlea
-Ismail El Shafei=Shafei
-István Gulyás=Gulyás
-Iva Majoli=Majoli
-Ivan Lendl=Lendl
-Ivan Ljubičić=Ljubičić
-Ivanna Madruga=Madruga
-Ivo Karlović=Karlović
-Jacco Eltingh=Eltingh
-Jaime Fillol=Fillol
-Jaime Yzaga=Yzaga
-Jakob Hlasek=Hlasek
-James Blake=Blake
-Jan Kodeš=Kodeš
-Jan Siemerink=Siemerink
-Jana Novotná=Novotná
-Janet Newberry=Newberry
-Janko Tipsarević=Tipsarević
-Jan-Michael Gambill=Gambill
-Jarkko Nieminen=Nieminen
-Jason Stoltenberg=Stoltenberg
-Javier Sánchez=Sánchez
-Jay Berger=Berger
-Jelena Dokic=Dokic
-Jelena Dokić=Dokić
-Jelena Janković=Janković
-Jeļena Ostapenko=Ostapenko
-Jennifer Capriati=Capriati
-Jennifer Mundel=Mundel
-Jerzy Janowicz=Janowicz
-Jim Courier=Courier
-Jimmy Arias=Arias
-Jimmy Connors=Connors
-Jo Durie=Durie
-Joachim Johansson=Johansson
-Joakim Nyström=Nyström
-JoAnne Russell=Russell
-Johan Kriek=Kriek
-Johanna Konta=Konta
-John Andrews=Andrews
-John Isner=Isner
-John Lloyd=Lloyd
-John McEnroe=McEnroe
-John Millman=Millman
-John Newcombe=Newcombe
-John Sadri=Sadri
-Jonas Björkman=Björkman
-Jonas Svensson=Svensson
-José Higueras=Higueras
-José Luis Clerc=Clerc
-Jo-Wilfried Tsonga=Tsonga
-Joyce Williams=Williams
-Juan Carlos Ferrero=Ferrero
-Juan Ignacio Chela=Chela
-Juan Martín del Potro=del Potro
-Judith Wiesner=Wiesner
-Judy Tegart=Tegart
-Julia Görges=Görges
-Julie Halard=Halard
-Julie Heldman=Heldman
-Julien Benneteau=Benneteau
-Jürgen Fassbender=Fassbender
-Jürgen Melzer=Melzer
-Justine Henin=Henin
-Kaia Kanepi=Kanepi
-Karel Nováček=Nováček
-Karen Krantzcke=Krantzcke
-Karina Habšudová=Habšudová
-Karol Kučera=Kučera
-Karolína Plíšková=Plíšková
-Karolina Šprem=Šprem
-Katerina Maleeva=Maleeva
-Kateryna Bondarenko=Bondarenko
-Kathy Horvath=Horvath
-Kathy Jordan=Jordan
-Kathy Kuykendall=Kuykendall
-Kathy May=May
-Kathy Rinaldi=Rinaldi
-Katja Ebbinghaus=Ebbinghaus
-Kazuko Sawamatsu=Sawamatsu
-Kei Nishikori=Nishikori
-Ken Rosewall=Rosewall
-Kerry Reid=Reid
-Kevin Anderson=Anderson
-Kevin Curren=Curren
-Kiki Bertens=Bertens
-Kim Clijsters=Clijsters
-Kim Warwick=Warwick
-Kimiko Date=Date
-Kirsten Flipkens=Flipkens
-Kristina Mladenovic=Mladenovic
-Larisa Neiland=Neiland
-Larisa Savchenko=Savchenko
-Laura Arraya=Arraya
-Laura duPont=Laura duPont
-Laura Golarsa=Golarsa
-Leila Meskhi=Meskhi
-Lesia Tsurenko=Tsurenko
-Lesley Bowrey=Bowrey
-Lesley Hunt=Hunt
-Lesley Turner Bowrey=Bowrey
-Li Na=Li
-Linda Tuero=Tuero
-Linda Wild=Wild
-Lindsay Davenport=Davenport
-Linky Boshoff=Boshoff
-Lisa Bonder=Bonder
-Lisa Raymond=Raymond
-Lleyton Hewitt=Hewitt
-Lori McNeil=McNeil
-Lu Yen-hsun=Lu
-Lucas Pouille=Pouille
-Lucia Romanov=Romanov
-Lucie Šafářová=Šafářová
-Łukasz Kubot=Kubot
-Madison Keys=Keys
-Magdalena Maleeva=Maleeva
-Magnus Larsson=Larsson
-Magnus Norman=Norman
-Magüi Serna=Serna
-MaliVai Washington=Washington
-Manon Bollegraf=Bollegraf
-Manuel Orantes=Orantes
-Manuela Maleeva=Maleeva
-Marat Safin=Safin
-Marc Rosset=Rosset
-Marcelo Filippini=Filippini
-Marcelo Ríos=Ríos
-Marco Cecchinato=Cecchinato
-Marcos Baghdatis=Baghdatis
-Mardy Fish=Fish
-Margaret Court=Court
-Maria Bueno=Bueno
-Maria Kirilenko=Kirilenko
-Maria Sharapova=Sharapova
-Mariano Puerta=Puerta
-Mariano Zabaleta=Zabaleta
-Marie Pinterova=Pinterova
-Marijke Schaar=Schaar
-Marin Čilić=Čilić
-Mario Ančić=Ančić
-Marion Bartoli=Bartoli
-Marise Kruger=Kruger
-Mark Dickson=Dickson
-Mark Edmondson=Edmondson
-Mark Philippoussis=Philippoussis
-Marta Marrero=Marrero
-Martín Jaite=Jaite
-Martin Mulligan=Mulligan
-Martin Verkerk=Verkerk
-Martina Hingis=Hingis
-Martina Navratilova=Navratilova
-Marty Riessen=Riessen
-Mary Joe Fernández=Fernández
-Mary Pierce=Pierce
-Maryna Godwin=Godwin
-Mats Wilander=Wilander
-Max Mirnyi=Mirnyi
-Mel Purcell=Purcell
-Melanie Oudin=Oudin
-Melissa Brown=Brown
-Meredith McGrath=McGrath
-Michael Chang=Chang
-Michael Stich=Stich
-Michaëlla Krajicek=Krajicek
-Mikael Pernfors=Pernfors
-Mikhail Youzhny=Youzhny
-Milan Šrejber=Šrejber
-Milos Raonic=Raonic
-Miloslav Mečíř=Mečíř
-Mima Jaušovec=Jaušovec
-Mirjana Lučić-Baroni=Lučić-Baroni
-Miroslava Bendlova=Bendlova
-Miroslava Holubova=Holubova
-Molly Van Nostrand=Van Nostrand
-Monica Seles=Seles
-Nadia Petrova=Petrova
-Nancy Richey=Richey
-Nancy Richey Gunter=Gunter
-Naomi Osaka=Osaka
-Natasha Chmyreva=Chmyreva
-Natasha Zvereva=Zvereva
-Nathalie Tauziat=Tauziat
-Nick Kyrgios=Kyrgios
-Nicklas Kulti=Kulti
-Nicolás Almagro=Almagro
-Nicolas Escudé=Escudé
-Nicolas Kiefer=Kiefer
-Nicolás Lapentti=Lapentti
-Nicole Provis=Provis
-Nicole Vaidišová=Vaidišová
-Nikola Pilić=Pilić
-Nikolay Davydenko=Davydenko
-Novak Djokovic=Djokovic
-Odile de Roubin=de Roubin
-Olga Morozova=Morozova
-Onny Parun=Parun
-Pablo Carreño Busta=Carreño Busta
-Pam Shriver=Shriver
-Pam Teeguarden=Teeguarden
-Pancho Gonzales=Gonzales
-Paola Suárez=Suárez
-Paolo Bertolucci=Bertolucci
-Pascale Paradis=Paradis
-Pat Cash=Cash
-Pat Dupre=Dupre
-Pat DuPré=DuPré
-Pat Rafter=Rafter
-Patricia Hy=Hy
-Patricio Cornejo=Cornejo
-Patrick McEnroe=McEnroe
-Patrick Proisy=Proisy
-Patrick Rafter=Rafter
-Patrik Kühnen=Kühnen
-Patti Hogan=Hogan
-Patty Schnyder=Schnyder
-Paul Annacone=Annacone
-Paul Chamberlin=Chamberlin
-Paul Haarhuis=Haarhuis
-Peaches Bartkowicz=Bartkowicz
-Peng Shuai=Shuai
-Pete Sampras=Sampras
-Peter Fleming=Fleming
-Peter McNamara=McNamara
-Petr Korda=Korda
-Petra Kvitová=Kvitová
-Petra Mandula=Mandula
-Petra Ritter=Ritter
-Phil Dent=Dent
-Philipp Kohlschreiber=Kohlschreiber
-Radek Štěpánek=Štěpánek
-Rafael Nadal=Nadal
-Raffaella Reggi=Reggi
-Rainer Schüttler=Schüttler
-Ramesh Krishnan=Krishnan
-Raquel Giscafré=Giscafré
-Raúl Ramírez=Ramírez
-Raymond Moore=Moore
-Regina Maršíková=Maršíková
-Renáta Tomanová=Tomanová
-Renzo Furlan=Furlan
-Ricardo Acuña=Acuña
-Richard Gasquet=Gasquet
-Richard Krajicek=Krajicek
-Robby Ginepri=Ginepri
-Robert Lutz=Lutz
-Roberta Vinci=Vinci
-Robin Söderling=Söderling
-Rod Frawley=Frawley
-Rod Laver=Laver
-Rodney Harmon=Harmon
-Roger Federer=Federer
-Roger Taylor=Taylor
-Ronald Agénor=Agénor
-Rosalyn Fairbank=Fairbank
-Roscoe Tanner=Tanner
-Rosemary Casals=Casals
-Roy Emerson=Emerson
-Ruta Gerulaitis=Gerulaitis
-Ruxandra Dragomir=Dragomir
-Sabine Hack=Hack
-Sabine Lisicki=Lisicki
-Sam Querrey=Querrey
-Samantha Stosur=Stosur
-Sandra Cecchini=Cecchini
-Sandrine Testud=Testud
-Sandy Mayer=Mayer
-Sara Errani=Errani
-Sébastien Grosjean=Grosjean
-Serena Williams=Williams
-Sergi Bruguera=Bruguera
-Sesil Karatantcheva=Karatantcheva
-Séverine Beltrame=Beltrame
-Shahar Pe’er=Shahar Pe’er
-Shelby Rogers=Rogers
-Shinobu Asagoe=Asagoe
-Shuzo Matsuoka=Matsuoka
-Silvia Farina Elia=Elia
-Simona Halep=Halep
-Sjeng Schalken=Schalken
-Slava Doseděl=Doseděl
-Sloane Stephens=Stephens
-Slobodan Živojinović=Živojinović
-Sorana Cîrstea=Cîrstea
-Stan Smith=Smith
-Stan Wawrinka=Wawrinka
-Stanislas Wawrinka=Wawrinka
-Stefan Edberg=Edberg
-Steffi Graf=Graf
-Sue Barker=Barker
-Svetlana Kuznetsova=Kuznetsova
-Sybille Bammer=Bammer
-Sylvia Hanika=Hanika
-Sylvia Plischke=Plischke
-Tamarine Tanasugarn=Tanasugarn
-Tamira Paszek=Paszek
-Tatiana Golovin=Golovin
-Terry Phelps=Phelps
-Thierry Champion=Champion
-Thomas Enqvist=Enqvist
-Thomas Johansson=Johansson
-Thomas Muster=Muster
-Thomaz Koch=Koch
-Tim Gullikson=Gullikson
-Tim Henman=Henman
-Tim Mayotte=Mayotte
-Tim Wilkison=Wilkison
-Timea Bacsinszky=Bacsinszky
-Todd Martin=Martin
-Todd Woodbridge=Woodbridge
-Tom Gorman=Gorman
-Tom Gullikson=Gullikson
-Tom Okker=Okker
-Tomáš Berdych=Berdych
-Tomáš Šmíd=Šmíd
-Tommy Haas=Haas
-Tommy Robredo=Robredo
-Tony Roche=Roche
-Tracy Austin=Austin
-Tsvetana Pironkova=Pironkova
-Vasek Pospisil=Pospisil
-Venus Williams=Williams
-Vera Zvonareva=Zvonareva
-Victor Hănescu=Hănescu
-Víctor Pecci=Pecci
-Victoria Azarenka=Azarenka
-Vijay Amritraj=Amritraj
-Virginia Ruano Pascual=Ruano Pascual
-Virginia Ruzici=Ruzici
-Virginia Wade=Wade
-Vitas Gerulaitis=Gerulaitis
-Vladimir Voltchkov=Voltchkov
-Vlasta Vopičková=Vopičková
-Wally Masur=Masur
-Wayne Ferreira=Ferreira
-Wendy Turnbull=Turnbull
-Winnie Shaw=Shaw
-Wojciech Fibak=Fibak
-Xavier Malisse=Malisse
-Yanina Wickmayer=Wickmayer
-Yannick Noah=Noah
-Yaroslava Shvedova=Shvedova
-Yayuk Basuki=Basuki
-Yevgeny Kafelnikov=Kafelnikov
-Younes El Aynaoui=El Aynaoui
-Yulia Putintseva=Putintseva
-Yvonne Vermaak=Vermaak
-Željko Franulović=Franulović
-Zenda Liess=Liess
-Zheng Jie=Zheng
-Zina Garrison=Garrison"
+        public static Dictionary<string, string> ShortNames = ShortNamesRaw
             .Trim()
             .Replace("\r", "")
             .Split('\n')
             .Select(line => line.Split('='))
-            .ToDictionary(arr => arr[0], arr => arr[1]);
+            .ToDictionary(arr => arr[0].Trim(), arr => arr[1].Trim());
 
         static Data()
         {
@@ -579,8 +21,636 @@ Zina Garrison=Garrison"
             All[Tournament.Wimbledon] = new Dictionary<bool, Dictionary<string, Dictionary<string, int>>> { { true, wimbledonMens() }, { false, wimbledonWomens() } };
         }
 
-        // Start auto-generated
-        
+        #region auto-generated
+        private const string ShortNamesRaw = @"Aaron Krickstein=Krickstein
+        Adrian Voinea=Voinea
+        Adriano Panatta=Panatta
+        Ágnes Szávay=Szávay
+        Agnieszka Radwańska=Radwańska
+        Ai Sugiyama=Sugiyama
+        Ajla Tomljanović=Tomljanović
+        Albert Costa=Costa
+        Albert Ramos-Viñolas=Ramos-Viñolas
+        Alberto Berasategui=Berasategui
+        Alberto Mancini=Mancini
+        Alejandro Fokina=Fokina
+        Àlex Corretja=Corretja
+        Alex de Minaur=de Minaur
+        Alex Metreveli=Metreveli
+        Alex Rădulescu=Rădulescu
+        Alexander Popp=Popp
+        Alexander Volkov=Volkov
+        Alexander Zverev=Zverev
+        Alexandra Stevenson=Stevenson
+        Alison Riske=Riske
+        Alison Van Uytvanck=Uytvanck
+        Amanda Anisimova=Anisimova
+        Amanda Coetzer=Coetzer
+        Amélie Mauresmo=Mauresmo
+        Amy Frazier=Frazier
+        Ana Ivanovic=Ivanovic
+        Ana Konjuh=Konjuh
+        Anastasia Myskina=Myskina
+        Anastasija Sevastova=Sevastova
+        Anders Järryd=Järryd
+        Andre Agassi=Agassi
+        André Sá=Sá
+        Andrea Jaeger=Jaeger
+        Andrea Petkovic=Petkovic
+        Andrei Cherkasov=Cherkasov
+        Andrei Chesnokov=Chesnokov
+        Andrei Medvedev=Medvedev
+        Andrei Pavel=Pavel
+        Andrés Gimeno=Gimeno
+        Andrés Gómez=Gómez
+        Andrew Pattison=Pattison
+        Andrey Rublev=Rublev
+        Andriy Medvedev=Medvedev
+        Andy Murray=Murray
+        Andy Roddick=Roddick
+        Angelique Kerber=Kerber
+        Anke Huber=Huber
+        Ann Haydon-Jones=Haydon-Jones
+        Ann Jones=Jones
+        Anna Chakvetadze=Chakvetadze
+        Anna Kournikova=Kournikova
+        Anna-Lena Grönefeld=Grönefeld
+        Anne Smith=Smith
+        Annette Van Zyl=Van Zyl
+        Arantxa Sánchez=Sánchez
+        Arnaud Clément=Clément
+        Arthur Ashe=Ashe
+        Aryna Sabalenka=Sabalenka
+        Ashleigh Barty=Barty
+        Balázs Taróczy=Taróczy
+        Barbara Gerken=Gerken
+        Barbara Hallquist=Hallquist
+        Barbara Potter=Potter
+        Barbara Schett=Schett
+        Barbara Schwartz=Schwartz
+        Barbora Krejčíková=Krejčíková
+        Barbora Strýcová=Strýcová
+        Beatriz Maia=Maia
+        Belinda Bencic=Bencic
+        Ben Shelton=Shelton
+        Bernard Tomic=Tomic
+        Bernd Karbacher=Karbacher
+        Bettina Bunge=Bunge
+        Bettina Fulco=Fulco
+        Betty Stöve=Stöve
+        Bianca Andreescu=Andreescu
+        Bill Scanlon=Scanlon
+        Billie Jean King=King
+        Billy Martin=Martin
+        Björn Borg=Borg
+        Bob Carmichael=Carmichael
+        Bonnie Gadusek=Gadusek
+        Boris Becker=Becker
+        Borna Ćorić=Ćorić
+        Boro Jovanović=Jovanović
+        Botic van de Zandschulp=van de Zandschulp
+        Brad Gilbert=Gilbert
+        Brad Pearce=Pearce
+        Brian Fairlie=Fairlie
+        Brian Gottfried=Gottfried
+        Brian Teacher=Teacher
+        Brigitte Simon=Simon
+        Bruce Manson=Manson
+        Butch Buchholz=Buchholz
+        Butch Walts=Walts
+        Byron Bertram=Bertram
+        Byron Black=Black
+        Cameron Norrie=Norrie
+        Camila Giorgi=Giorgi
+        Camille Benjamin=Benjamin
+        Carina Karlsson=Karlsson
+        Carla Suárez Navarro=Suárez Navarro
+        Carling Bassett=Bassett
+        Carlos Alcaraz=Alcaraz
+        Carlos Moyà=Moyà
+        Caroline Garcia=Garcia
+        Caroline Wozniacki=Wozniacki
+        Casper Ruud=Ruud
+        Catarina Lindqvist=Lindqvist
+        Cédric Pioline=Pioline
+        Chanda Rubin=Rubin
+        Charlie Pasarell=Pasarell
+        Chris Evert=Evert
+        Chris Lewis=Lewis
+        Christian Bergström=Bergström
+        Christopher Eubanks=Eubanks
+        Cici Martinez=Martinez
+        Clarisa Fernández=Fernández
+        Clark Graebner=Graebner
+        Claudia Kohde-Kilsch=Kohde-Kilsch
+        Cliff Drysdale=Drysdale
+        Cliff Richey=Richey
+        Coco Gauff=Gauff
+        CoCo Vandeweghe=Vandeweghe
+        Colin Dibley=Dibley
+        Conchita Martínez=Martínez
+        Corinne Molesworth=Molesworth
+        Corrado Barazzutti=Barazzutti
+        Cristian Garín=Garín
+        Dája Bedáňová=Bedáňová
+        Dan Goldie=Goldie
+        Daniela Hantuchová=Hantuchová
+        Danielle Collins=Collins
+        Daniil Medvedev=Medvedev
+        Daria Kasatkina=Kasatkina
+        Darren Cahill=Cahill
+        David Ferrer=Ferrer
+        David Goffin=Goffin
+        David Nalbandian=Nalbandian
+        David Wheaton=Wheaton
+        Davide Sanguinetti=Sanguinetti
+        Denis Shapovalov=Shapovalov
+        Denisa Chládková=Chládková
+        Dennis Ralston=Ralston
+        Derrick Rostagno=Rostagno
+        Dianne Fromholtz=Fromholtz
+        Dick Stockton=Stockton
+        Diego Schwartzman=Schwartzman
+        Dinara Safina=Safina
+        Dominic Thiem=Thiem
+        Dominik Hrbatý=Hrbatý
+        Dominika Cibulková=Cibulková
+        Donna Ganz=Ganz
+        Donna Vekić=Vekić
+        Earl Butch Buchholz=Buchholz
+        Eddie Dibbs=Dibbs
+        Ekaterina Makarova=Makarova
+        Elena Bovina=Bovina
+        Elena Dementieva=Dementieva
+        Elena Likhovtseva=Likhovtseva
+        Elena Rybakina=Rybakina
+        Elena Subirats=Subirats
+        Elena Vesnina=Vesnina
+        Elina Svitolina=Svitolina
+        Eliot Teltscher=Teltscher
+        Elise Mertens=Mertens
+        Emilio Sánchez=Sánchez
+        Emma Navarro=Navarro
+        Emma Raducanu=Raducanu
+        Ernests Gulbis=Gulbis
+        Eugenie Bouchard=Bouchard
+        Éva Szabó=Szabó
+        Evonne Cawley=Cawley
+        Evonne Goolagong=Goolagong
+        Fabio Fognini=Fognini
+        Feliciano López=López
+        Félix Auger-Aliassime=Auger-Aliassime
+        Félix Mantilla Botella=Mantilla
+        Fernando González=González
+        Fernando Meligeni=Meligeni
+        Fernando Verdasco=Verdasco
+        Filip Dewulf=Dewulf
+        Fiorella Bonicelli=Bonicelli
+        Flavia Pennetta=Pennetta
+        Florența Mihai=Mihai
+        Florian Mayer=Mayer
+        Frances Tiafoe=Tiafoe
+        Francesca Schiavone=Schiavone
+        Franco Davín=Davín
+        Franco Squillari=Squillari
+        François Jauffret=Jauffret
+        Françoise Dürr=Dürr
+        Frank Froehling=Froehling
+        Fred Stolle=Stolle
+        Frew McMillan=McMillan
+        Gabriela Sabatini=Sabatini
+        Gaël Monfils=Monfils
+        Gail Chanfreau=Chanfreau
+        Galo Blanco=Blanco
+        Garbiñe Muguruza=Muguruza
+        Gastón Gaudio=Gaudio
+        Gene Mayer=Mayer
+        Georges Goven=Goven
+        Gigi Fernández=Fernández
+        Gilles Müller=Müller
+        Gilles Simon=Simon
+        Goran Ivanišević=Ivanišević
+        Goran Prpić=Prpić
+        Greer Stevens=Stevens
+        Greg Rusedski=Rusedski
+        Gretchen Rush=Rush
+        Grigor Dimitrov=Dimitrov
+        Guido Pella=Pella
+        Guillermo Cañas=Cañas
+        Guillermo Coria=Coria
+        Guillermo Pérez Roldán=Pérez Roldán
+        Guillermo Vilas=Vilas
+        Gustavo Kuerten=Kuerten
+        Guy Forget=Forget
+        Hana Mandlíková=Mandlíková
+        Hans Gildemeister=Gildemeister
+        Harold Solomon=Solomon
+        Heinz Günthardt=Günthardt
+        Helen Gourlay=Gourlay
+        Helen Kelesi=Kelesi
+        Helena Suková=Suková
+        Helga Masthoff=Masthoff
+        Helga Niessen=Niessen
+        Hendrik Dreekmann=Dreekmann
+        Henri Leconte=Leconte
+        Henrik Sundström=Sundström
+        Hicham Arazi=Arazi
+        Holger Rune=Rune
+        Hubert Hurkacz=Hurkacz
+        Iga Świątek=Świątek
+        Igor Andreev=Andreev
+        Ilie Năstase=Năstase
+        Inés Gorrochategui=Gorrochategui
+        Ion Țiriac=Țiriac
+        Irina Spîrlea=Spîrlea
+        Ismail El Shafei=Shafei
+        István Gulyás=Gulyás
+        Iva Majoli=Majoli
+        Ivan Lendl=Lendl
+        Ivan Ljubičić=Ljubičić
+        Ivanna Madruga=Madruga
+        Ivo Karlović=Karlović
+        Jacco Eltingh=Eltingh
+        Jack Draper=Draper
+        Jaime Fillol=Fillol
+        Jaime Yzaga=Yzaga
+        Jakob Hlasek=Hlasek
+        James Blake=Blake
+        Jan Kodeš=Kodeš
+        Jan Siemerink=Siemerink
+        Jan-Michael Gambill=Gambill
+        Jana Novotná=Novotná
+        Janet Newberry=Newberry
+        Janko Tipsarević=Tipsarević
+        Jannik Sinner=Sinner
+        Jarkko Nieminen=Nieminen
+        Jasmine Paolini=Paolini
+        Jason Stoltenberg=Stoltenberg
+        Javier Sánchez=Sánchez
+        Jay Berger=Berger
+        Jelena Dokic=Dokic
+        Jelena Dokić=Dokić
+        Jelena Janković=Janković
+        Jeļena Ostapenko=Ostapenko
+        Jennifer Brady=Brady
+        Jennifer Capriati=Capriati
+        Jennifer Mundel=Mundel
+        Jerzy Janowicz=Janowicz
+        Jessica Pegula=Pegula
+        Jim Courier=Courier
+        Jimmy Arias=Arias
+        Jimmy Connors=Connors
+        Jo Durie=Durie
+        Jo-Wilfried Tsonga=Tsonga
+        Joachim Johansson=Johansson
+        Joakim Nyström=Nyström
+        JoAnne Russell=Russell
+        Johan Kriek=Kriek
+        Johanna Konta=Konta
+        John Andrews=Andrews
+        John Isner=Isner
+        John Lloyd=Lloyd
+        John McEnroe=McEnroe
+        John Millman=Millman
+        John Newcombe=Newcombe
+        John Sadri=Sadri
+        Jonas Björkman=Björkman
+        Jonas Svensson=Svensson
+        José Higueras=Higueras
+        José Luis Clerc=Clerc
+        Joyce Williams=Williams
+        Juan Carlos Ferrero=Ferrero
+        Juan Ignacio Chela=Chela
+        Juan Martín del Potro=del Potro
+        Judith Wiesner=Wiesner
+        Judy Tegart=Tegart
+        Jule Niemeier=Niemeier
+        Julia Görges=Görges
+        Julie Halard=Halard
+        Julie Heldman=Heldman
+        Julien Benneteau=Benneteau
+        Jürgen Fassbender=Fassbender
+        Jürgen Melzer=Melzer
+        Justine Henin=Henin
+        Kaia Kanepi=Kanepi
+        Karel Nováček=Nováček
+        Karen Khachanov=Khachanov
+        Karen Krantzcke=Krantzcke
+        Karina Habšudová=Habšudová
+        Karol Kučera=Kučera
+        Karolína Muchová=Muchová
+        Karolína Plíšková=Plíšková
+        Karolina Šprem=Šprem
+        Katerina Maleeva=Maleeva
+        Kateryna Bondarenko=Bondarenko
+        Kathy Horvath=Horvath
+        Kathy Jordan=Jordan
+        Kathy Kuykendall=Kuykendall
+        Kathy May=May
+        Kathy Rinaldi=Rinaldi
+        Katja Ebbinghaus=Ebbinghaus
+        Kazuko Sawamatsu=Sawamatsu
+        Kei Nishikori=Nishikori
+        Ken Rosewall=Rosewall
+        Kerry Reid=Reid
+        Kevin Anderson=Anderson
+        Kevin Curren=Curren
+        Kiki Bertens=Bertens
+        Kim Clijsters=Clijsters
+        Kim Warwick=Warwick
+        Kimiko Date=Date
+        Kirsten Flipkens=Flipkens
+        Kristina Mladenovic=Mladenovic
+        Larisa Neiland=Neiland
+        Larisa Savchenko=Savchenko
+        Laura Arraya=Arraya
+        Laura duPont=Laura duPont
+        Laura Golarsa=Golarsa
+        Laura Siegemund=Siegemund
+        Leila Meskhi=Meskhi
+        Lesia Tsurenko=Tsurenko
+        Lesley Bowrey=Bowrey
+        Lesley Hunt=Hunt
+        Lesley Turner Bowrey=Bowrey
+        Leylah Fernandez=Fernandez
+        Li Na=Li
+        Linda Tuero=Tuero
+        Linda Wild=Wild
+        Lindsay Davenport=Davenport
+        Linky Boshoff=Boshoff
+        Lisa Bonder=Bonder
+        Lisa Raymond=Raymond
+        Lleyton Hewitt=Hewitt
+        Lloyd Harris=Harris
+        Lorenzo Musetti=Musetti
+        Lori McNeil=McNeil
+        Lu Yen-hsun=Lu
+        Lucas Pouille=Pouille
+        Lucia Romanov=Romanov
+        Lucie Šafářová=Šafářová
+        Łukasz Kubot=Kubot
+        Lulu Sun=Sun
+        Madison Keys=Keys
+        Magdalena Maleeva=Maleeva
+        Magnus Larsson=Larsson
+        Magnus Norman=Norman
+        Magüi Serna=Serna
+        MaliVai Washington=Washington
+        Manon Bollegraf=Bollegraf
+        Manuel Orantes=Orantes
+        Manuela Maleeva=Maleeva
+        Marat Safin=Safin
+        Marc Rosset=Rosset
+        Marcelo Filippini=Filippini
+        Marcelo Ríos=Ríos
+        Marco Cecchinato=Cecchinato
+        Marcos Baghdatis=Baghdatis
+        Mardy Fish=Fish
+        Margaret Court=Court
+        Maria Bueno=Bueno
+        Maria Kirilenko=Kirilenko
+        Maria Sakkari=Sakkari
+        Maria Sharapova=Sharapova
+        Mariano Puerta=Puerta
+        Mariano Zabaleta=Zabaleta
+        Marie Bouzková=Bouzková
+        Marie Pinterova=Pinterova
+        Marijke Schaar=Schaar
+        Marin Čilić=Čilić
+        Mario Ančić=Ančić
+        Marion Bartoli=Bartoli
+        Marise Kruger=Kruger
+        Mark Dickson=Dickson
+        Mark Edmondson=Edmondson
+        Mark Philippoussis=Philippoussis
+        Markéta Vondroušová=Vondroušová
+        Marta Marrero=Marrero
+        Martín Jaite=Jaite
+        Martin Mulligan=Mulligan
+        Martin Verkerk=Verkerk
+        Martina Hingis=Hingis
+        Martina Navratilova=Navratilova
+        Martina Trevisan=Trevisan
+        Márton Fucsovics=Fucsovics
+        Marty Riessen=Riessen
+        Mary Joe Fernández=Fernández
+        Mary Pierce=Pierce
+        Maryna Godwin=Godwin
+        Mats Wilander=Wilander
+        Matteo Berrettini=Berrettini
+        Max Mirnyi=Mirnyi
+        Mel Purcell=Purcell
+        Melanie Oudin=Oudin
+        Melissa Brown=Brown
+        Meredith McGrath=McGrath
+        Michael Chang=Chang
+        Michael Stich=Stich
+        Michaëlla Krajicek=Krajicek
+        Mikael Pernfors=Pernfors
+        Mikhail Youzhny=Youzhny
+        Milan Šrejber=Šrejber
+        Milos Raonic=Raonic
+        Miloslav Mečíř=Mečíř
+        Mima Jaušovec=Jaušovec
+        Mirjana Lučić-Baroni=Lučić-Baroni
+        Miroslava Bendlova=Bendlova
+        Miroslava Holubova=Holubova
+        Mirra Andreeva=Andreeva
+        Molly Van Nostrand=Van Nostrand
+        Monica Seles=Seles
+        Nadia Petrova=Petrova
+        Nadia Podoroska=Podoroska
+        Nancy Richey=Richey
+        Nancy Richey Gunter=Gunter
+        Naomi Osaka=Osaka
+        Natasha Chmyreva=Chmyreva
+        Natasha Zvereva=Zvereva
+        Nathalie Tauziat=Tauziat
+        Nick Kyrgios=Kyrgios
+        Nicklas Kulti=Kulti
+        Nicolás Almagro=Almagro
+        Nicolas Escudé=Escudé
+        Nicolas Kiefer=Kiefer
+        Nicolás Lapentti=Lapentti
+        Nicole Provis=Provis
+        Nicole Vaidišová=Vaidišová
+        Nikola Pilić=Pilić
+        Nikolay Davydenko=Davydenko
+        Novak Djokovic=Djokovic
+        Odile de Roubin=de Roubin
+        Olga Morozova=Morozova
+        Onny Parun=Parun
+        Ons Jabeur=Jabeur
+        Pablo Carreño Busta=Carreño Busta
+        Pam Shriver=Shriver
+        Pam Teeguarden=Teeguarden
+        Pancho Gonzales=Gonzales
+        Paola Suárez=Suárez
+        Paolo Bertolucci=Bertolucci
+        Pascale Paradis=Paradis
+        Pat Cash=Cash
+        Pat Dupre=Dupre
+        Pat DuPré=DuPré
+        Pat Rafter=Rafter
+        Patricia Hy=Hy
+        Patricio Cornejo=Cornejo
+        Patrick McEnroe=McEnroe
+        Patrick Proisy=Proisy
+        Patrick Rafter=Rafter
+        Patrik Kühnen=Kühnen
+        Patti Hogan=Hogan
+        Patty Schnyder=Schnyder
+        Paul Annacone=Annacone
+        Paul Chamberlin=Chamberlin
+        Paul Haarhuis=Haarhuis
+        Paula Badosa=Badosa
+        Peaches Bartkowicz=Bartkowicz
+        Peng Shuai=Shuai
+        Pete Sampras=Sampras
+        Peter Fleming=Fleming
+        Peter McNamara=McNamara
+        Petr Korda=Korda
+        Petra Kvitová=Kvitová
+        Petra Mandula=Mandula
+        Petra Martić=Martić
+        Petra Ritter=Ritter
+        Phil Dent=Dent
+        Philipp Kohlschreiber=Kohlschreiber
+        Radek Štěpánek=Štěpánek
+        Rafael Nadal=Nadal
+        Raffaella Reggi=Reggi
+        Rainer Schüttler=Schüttler
+        Ramesh Krishnan=Krishnan
+        Raquel Giscafré=Giscafré
+        Raúl Ramírez=Ramírez
+        Raymond Moore=Moore
+        Regina Maršíková=Maršíková
+        Renáta Tomanová=Tomanová
+        Renzo Furlan=Furlan
+        Ricardo Acuña=Acuña
+        Richard Gasquet=Gasquet
+        Richard Krajicek=Krajicek
+        Robby Ginepri=Ginepri
+        Robert Lutz=Lutz
+        Roberta Vinci=Vinci
+        Roberto Bautista Agut=Bautista Agut
+        Robin Söderling=Söderling
+        Rod Frawley=Frawley
+        Rod Laver=Laver
+        Rodney Harmon=Harmon
+        Roger Federer=Federer
+        Roger Taylor=Taylor
+        Roman Safiullin=Safiullin
+        Ronald Agénor=Agénor
+        Rosalyn Fairbank=Fairbank
+        Roscoe Tanner=Tanner
+        Rosemary Casals=Casals
+        Roy Emerson=Emerson
+        Ruta Gerulaitis=Gerulaitis
+        Ruxandra Dragomir=Dragomir
+        Sabine Hack=Hack
+        Sabine Lisicki=Lisicki
+        Sam Querrey=Querrey
+        Samantha Stosur=Stosur
+        Sandra Cecchini=Cecchini
+        Sandrine Testud=Testud
+        Sandy Mayer=Mayer
+        Sara Errani=Errani
+        Sébastien Grosjean=Grosjean
+        Serena Williams=Williams
+        Sergi Bruguera=Bruguera
+        Sesil Karatantcheva=Karatantcheva
+        Séverine Beltrame=Beltrame
+        Shahar Pe’er=Pe’er
+        Shelby Rogers=Rogers
+        Shinobu Asagoe=Asagoe
+        Shuzo Matsuoka=Matsuoka
+        Silvia Farina Elia=Elia
+        Simona Halep=Halep
+        Sjeng Schalken=Schalken
+        Slava Doseděl=Doseděl
+        Sloane Stephens=Stephens
+        Slobodan Živojinović=Živojinović
+        Sofia Kenin=Kenin
+        Sorana Cîrstea=Cîrstea
+        Stan Smith=Smith
+        Stan Wawrinka=Wawrinka
+        Stanislas Wawrinka=Wawrinka
+        Stefan Edberg=Edberg
+        Stefanos Tsitsipas=Tsitsipas
+        Steffi Graf=Graf
+        Sue Barker=Barker
+        Svetlana Kuznetsova=Kuznetsova
+        Sybille Bammer=Bammer
+        Sylvia Hanika=Hanika
+        Sylvia Plischke=Plischke
+        Tamara Zidanšek=Zidanšek
+        Tamarine Tanasugarn=Tanasugarn
+        Tamira Paszek=Paszek
+        Tatiana Golovin=Golovin
+        Tatjana Maria=Maria
+        Taylor Fritz=Fritz
+        Terry Phelps=Phelps
+        Thierry Champion=Champion
+        Thomas Enqvist=Enqvist
+        Thomas Johansson=Johansson
+        Thomas Muster=Muster
+        Thomaz Koch=Koch
+        Tim Gullikson=Gullikson
+        Tim Henman=Henman
+        Tim Mayotte=Mayotte
+        Tim Wilkison=Wilkison
+        Timea Bacsinszky=Bacsinszky
+        Todd Martin=Martin
+        Todd Woodbridge=Woodbridge
+        Tom Gorman=Gorman
+        Tom Gullikson=Gullikson
+        Tom Okker=Okker
+        Tomáš Berdych=Berdych
+        Tomás Etcheverry=Etcheverry
+        Tomáš Šmíd=Šmíd
+        Tommy Haas=Haas
+        Tommy Paul=Paul
+        Tommy Robredo=Robredo
+        Tony Roche=Roche
+        Tracy Austin=Austin
+        Tsvetana Pironkova=Pironkova
+        Vasek Pospisil=Pospisil
+        Venus Williams=Williams
+        Vera Zvonareva=Zvonareva
+        Veronika Kudermetova=Kudermetova
+        Victor Hănescu=Hănescu
+        Víctor Pecci=Pecci
+        Victoria Azarenka=Azarenka
+        Vijay Amritraj=Amritraj
+        Viktorija Golubic=Golubic
+        Virginia Ruano Pascual=Ruano Pascual
+        Virginia Ruzici=Ruzici
+        Virginia Wade=Wade
+        Vitas Gerulaitis=Gerulaitis
+        Vladimir Voltchkov=Voltchkov
+        Vlasta Vopičková=Vopičková
+        Wally Masur=Masur
+        Wang Qiang=Wang
+        Wayne Ferreira=Ferreira
+        Wendy Turnbull=Turnbull
+        Winnie Shaw=Shaw
+        Wojciech Fibak=Fibak
+        Xavier Malisse=Malisse
+        Yanina Wickmayer=Wickmayer
+        Yannick Noah=Noah
+        Yaroslava Shvedova=Shvedova
+        Yayuk Basuki=Basuki
+        Yevgeny Kafelnikov=Kafelnikov
+        Younes El Aynaoui=Aynaoui
+        Yulia Putintseva=Putintseva
+        Yvonne Vermaak=Vermaak
+        Željko Franulović=Franulović
+        Zenda Liess=Liess
+        Zhang Shuai=Zhang
+        Zheng Jie=Zheng
+        Zheng Qinwen=Zheng
+        Zina Garrison=Garrison";
         static Dictionary<string, Dictionary<string, int>> wimbledonMens()
         {
             return new Dictionary<string, Dictionary<string, int>>
@@ -642,16 +712,16 @@ Zina Garrison=Garrison"
                 { "Xavier Malisse", new Dictionary<string, int> { { "Richard Krajicek", 1 } } },
                 { "David Nalbandian", new Dictionary<string, int> { { "Nicolás Lapentti", 1 }, { "Xavier Malisse", 1 } } },
                 { "Andy Roddick", new Dictionary<string, int> { { "Jonas Björkman", 1 }, { "Sjeng Schalken", 1 }, { "Mario Ančić", 1 }, { "Sébastien Grosjean", 1 }, { "Thomas Johansson", 1 }, { "Lleyton Hewitt", 1 }, { "Andy Murray", 1 } } },
-                { "Roger Federer", new Dictionary<string, int> { { "Sjeng Schalken", 1 }, { "Andy Roddick", 4 }, { "Mark Philippoussis", 1 }, { "Lleyton Hewitt", 2 }, { "Sébastien Grosjean", 1 }, { "Fernando González", 1 }, { "Mario Ančić", 2 }, { "Jonas Björkman", 1 }, { "Rafael Nadal", 2 }, { "Juan Carlos Ferrero", 1 }, { "Richard Gasquet", 1 }, { "Marat Safin", 1 }, { "Ivo Karlović", 1 }, { "Tommy Haas", 1 }, { "Mikhail Youzhny", 1 }, { "Novak Djokovic", 1 }, { "Andy Murray", 2 }, { "Stan Wawrinka", 1 }, { "Milos Raonic", 2 }, { "Gilles Simon", 1 }, { "Marin Čilić", 2 }, { "Tomáš Berdych", 1 } } },
+                { "Roger Federer", new Dictionary<string, int> { { "Sjeng Schalken", 1 }, { "Andy Roddick", 4 }, { "Mark Philippoussis", 1 }, { "Lleyton Hewitt", 2 }, { "Sébastien Grosjean", 1 }, { "Fernando González", 1 }, { "Mario Ančić", 2 }, { "Jonas Björkman", 1 }, { "Rafael Nadal", 3 }, { "Juan Carlos Ferrero", 1 }, { "Richard Gasquet", 1 }, { "Marat Safin", 1 }, { "Ivo Karlović", 1 }, { "Tommy Haas", 1 }, { "Mikhail Youzhny", 1 }, { "Novak Djokovic", 1 }, { "Andy Murray", 2 }, { "Stan Wawrinka", 1 }, { "Milos Raonic", 2 }, { "Gilles Simon", 1 }, { "Marin Čilić", 2 }, { "Tomáš Berdych", 1 }, { "Kei Nishikori", 1 } } },
                 { "Sébastien Grosjean", new Dictionary<string, int> { { "Tim Henman", 1 }, { "Florian Mayer", 1 } } },
                 { "Mark Philippoussis", new Dictionary<string, int> { { "Alexander Popp", 1 }, { "Sébastien Grosjean", 1 } } },
                 { "Mario Ančić", new Dictionary<string, int> { { "Tim Henman", 1 } } },
                 { "Thomas Johansson", new Dictionary<string, int> { { "David Nalbandian", 1 } } },
                 { "Jonas Björkman", new Dictionary<string, int> { { "Radek Štěpánek", 1 } } },
                 { "Marcos Baghdatis", new Dictionary<string, int> { { "Lleyton Hewitt", 1 } } },
-                { "Rafael Nadal", new Dictionary<string, int> { { "Jarkko Nieminen", 1 }, { "Marcos Baghdatis", 1 }, { "Tomáš Berdych", 2 }, { "Novak Djokovic", 1 }, { "Andy Murray", 3 }, { "Rainer Schüttler", 1 }, { "Roger Federer", 1 }, { "Robin Söderling", 1 }, { "Mardy Fish", 1 }, { "Juan Martín del Potro", 1 } } },
+                { "Rafael Nadal", new Dictionary<string, int> { { "Jarkko Nieminen", 1 }, { "Marcos Baghdatis", 1 }, { "Tomáš Berdych", 2 }, { "Novak Djokovic", 1 }, { "Andy Murray", 3 }, { "Rainer Schüttler", 1 }, { "Roger Federer", 1 }, { "Robin Söderling", 1 }, { "Mardy Fish", 1 }, { "Juan Martín del Potro", 1 }, { "Sam Querrey", 1 }, { "Taylor Fritz", 1 } } },
                 { "Richard Gasquet", new Dictionary<string, int> { { "Andy Roddick", 1 }, { "Stan Wawrinka", 1 } } },
-                { "Novak Djokovic", new Dictionary<string, int> { { "Marcos Baghdatis", 1 }, { "Lu Yen-hsun", 1 }, { "Bernard Tomic", 1 }, { "Jo-Wilfried Tsonga", 1 }, { "Rafael Nadal", 2 }, { "Florian Mayer", 1 }, { "Tomáš Berdych", 1 }, { "Juan Martín del Potro", 1 }, { "Marin Čilić", 2 }, { "Grigor Dimitrov", 1 }, { "Roger Federer", 2 }, { "Richard Gasquet", 1 }, { "Kei Nishikori", 1 }, { "Kevin Anderson", 1 } } },
+                { "Novak Djokovic", new Dictionary<string, int> { { "Marcos Baghdatis", 1 }, { "Lu Yen-hsun", 1 }, { "Bernard Tomic", 1 }, { "Jo-Wilfried Tsonga", 1 }, { "Rafael Nadal", 2 }, { "Florian Mayer", 1 }, { "Tomáš Berdych", 1 }, { "Juan Martín del Potro", 1 }, { "Marin Čilić", 2 }, { "Grigor Dimitrov", 1 }, { "Roger Federer", 3 }, { "Richard Gasquet", 1 }, { "Kei Nishikori", 1 }, { "Kevin Anderson", 1 }, { "David Goffin", 1 }, { "Roberto Bautista Agut", 1 }, { "Márton Fucsovics", 1 }, { "Denis Shapovalov", 1 }, { "Matteo Berrettini", 1 }, { "Jannik Sinner", 2 }, { "Cameron Norrie", 1 }, { "Nick Kyrgios", 1 }, { "Andrey Rublev", 1 }, { "Alex de Minaur", 1 }, { "Lorenzo Musetti", 1 } } },
                 { "Marat Safin", new Dictionary<string, int> { { "Feliciano López", 1 } } },
                 { "Rainer Schüttler", new Dictionary<string, int> { { "Arnaud Clément", 1 } } },
                 { "Andy Murray", new Dictionary<string, int> { { "Juan Carlos Ferrero", 1 }, { "Jo-Wilfried Tsonga", 3 }, { "Feliciano López", 1 }, { "David Ferrer", 1 }, { "Fernando Verdasco", 1 }, { "Jerzy Janowicz", 1 }, { "Novak Djokovic", 1 }, { "Vasek Pospisil", 1 }, { "Tomáš Berdych", 1 }, { "Milos Raonic", 1 } } },
@@ -665,10 +735,19 @@ Zina Garrison=Garrison"
                 { "Sam Querrey", new Dictionary<string, int> { { "Andy Murray", 1 } } },
                 { "Marin Čilić", new Dictionary<string, int> { { "Gilles Müller", 1 }, { "Sam Querrey", 1 } } },
                 { "Kevin Anderson", new Dictionary<string, int> { { "Roger Federer", 1 }, { "John Isner", 1 } } },
-                { "John Isner", new Dictionary<string, int> { { "Milos Raonic", 1 } } }
+                { "John Isner", new Dictionary<string, int> { { "Milos Raonic", 1 } } },
+                { "Roberto Bautista Agut", new Dictionary<string, int> { { "Guido Pella", 1 } } },
+                { "Denis Shapovalov", new Dictionary<string, int> { { "Karen Khachanov", 1 } } },
+                { "Matteo Berrettini", new Dictionary<string, int> { { "Félix Auger-Aliassime", 1 }, { "Hubert Hurkacz", 1 } } },
+                { "Hubert Hurkacz", new Dictionary<string, int> { { "Roger Federer", 1 } } },
+                { "Cameron Norrie", new Dictionary<string, int> { { "David Goffin", 1 } } },
+                { "Nick Kyrgios", new Dictionary<string, int> { { "Cristian Garín", 1 }, { "Rafael Nadal", 1 } } },
+                { "Carlos Alcaraz", new Dictionary<string, int> { { "Holger Rune", 1 }, { "Daniil Medvedev", 2 }, { "Novak Djokovic", 2 }, { "Tommy Paul", 1 } } },
+                { "Daniil Medvedev", new Dictionary<string, int> { { "Christopher Eubanks", 1 }, { "Jannik Sinner", 1 } } },
+                { "Jannik Sinner", new Dictionary<string, int> { { "Roman Safiullin", 1 } } },
+                { "Lorenzo Musetti", new Dictionary<string, int> { { "Taylor Fritz", 1 } } }
             };
         }
-        
         static Dictionary<string, Dictionary<string, int>> wimbledonWomens()
         {
             return new Dictionary<string, Dictionary<string, int>>
@@ -718,7 +797,7 @@ Zina Garrison=Garrison"
                 { "Lindsay Davenport", new Dictionary<string, int> { { "Jana Novotná", 1 }, { "Alexandra Stevenson", 1 }, { "Steffi Graf", 1 }, { "Monica Seles", 1 }, { "Jelena Dokic", 1 }, { "Kim Clijsters", 1 }, { "Karolina Šprem", 1 }, { "Svetlana Kuznetsova", 1 }, { "Amélie Mauresmo", 1 } } },
                 { "Mirjana Lučić-Baroni", new Dictionary<string, int> { { "Nathalie Tauziat", 1 } } },
                 { "Venus Williams", new Dictionary<string, int> { { "Martina Hingis", 1 }, { "Serena Williams", 2 }, { "Lindsay Davenport", 4 }, { "Nathalie Tauziat", 1 }, { "Justine Henin", 2 }, { "Elena Likhovtseva", 1 }, { "Kim Clijsters", 1 }, { "Mary Pierce", 1 }, { "Maria Sharapova", 1 }, { "Svetlana Kuznetsova", 1 }, { "Ana Ivanovic", 1 }, { "Marion Bartoli", 1 }, { "Tamarine Tanasugarn", 1 }, { "Elena Dementieva", 1 }, { "Agnieszka Radwańska", 1 }, { "Dinara Safina", 1 }, { "Yaroslava Shvedova", 1 }, { "Jeļena Ostapenko", 1 }, { "Johanna Konta", 1 } } },
-                { "Serena Williams", new Dictionary<string, int> { { "Lisa Raymond", 1 }, { "Daniela Hantuchová", 1 }, { "Amélie Mauresmo", 2 }, { "Venus Williams", 3 }, { "Jennifer Capriati", 2 }, { "Justine Henin", 1 }, { "Agnieszka Radwańska", 2 }, { "Zheng Jie", 1 }, { "Victoria Azarenka", 3 }, { "Elena Dementieva", 1 }, { "Li Na", 1 }, { "Petra Kvitová", 2 }, { "Vera Zvonareva", 1 }, { "Maria Sharapova", 1 }, { "Garbiñe Muguruza", 1 }, { "Elena Vesnina", 1 }, { "Angelique Kerber", 1 }, { "Camila Giorgi", 1 }, { "Julia Görges", 1 } } },
+                { "Serena Williams", new Dictionary<string, int> { { "Lisa Raymond", 1 }, { "Daniela Hantuchová", 1 }, { "Amélie Mauresmo", 2 }, { "Venus Williams", 3 }, { "Jennifer Capriati", 2 }, { "Justine Henin", 1 }, { "Agnieszka Radwańska", 2 }, { "Zheng Jie", 1 }, { "Victoria Azarenka", 3 }, { "Elena Dementieva", 1 }, { "Li Na", 1 }, { "Petra Kvitová", 2 }, { "Vera Zvonareva", 1 }, { "Maria Sharapova", 1 }, { "Garbiñe Muguruza", 1 }, { "Elena Vesnina", 1 }, { "Angelique Kerber", 1 }, { "Camila Giorgi", 1 }, { "Julia Görges", 1 }, { "Alison Riske", 1 }, { "Barbora Strýcová", 1 } } },
                 { "Jelena Dokic", new Dictionary<string, int> { { "Magüi Serna", 1 } } },
                 { "Justine Henin", new Dictionary<string, int> { { "Conchita Martínez", 1 }, { "Jennifer Capriati", 1 }, { "Monica Seles", 1 }, { "Svetlana Kuznetsova", 1 }, { "Séverine Beltrame", 1 }, { "Kim Clijsters", 1 }, { "Serena Williams", 1 } } },
                 { "Amélie Mauresmo", new Dictionary<string, int> { { "Jennifer Capriati", 1 }, { "Paola Suárez", 1 }, { "Anastasia Myskina", 2 }, { "Maria Sharapova", 1 }, { "Justine Henin", 1 } } },
@@ -734,20 +813,31 @@ Zina Garrison=Garrison"
                 { "Tsvetana Pironkova", new Dictionary<string, int> { { "Venus Williams", 1 } } },
                 { "Sabine Lisicki", new Dictionary<string, int> { { "Marion Bartoli", 1 }, { "Kaia Kanepi", 1 }, { "Agnieszka Radwańska", 1 } } },
                 { "Victoria Azarenka", new Dictionary<string, int> { { "Tamira Paszek", 2 } } },
-                { "Angelique Kerber", new Dictionary<string, int> { { "Sabine Lisicki", 1 }, { "Simona Halep", 1 }, { "Venus Williams", 1 }, { "Daria Kasatkina", 1 }, { "Jeļena Ostapenko", 1 }, { "Serena Williams", 1 } } },
+                { "Angelique Kerber", new Dictionary<string, int> { { "Sabine Lisicki", 1 }, { "Simona Halep", 1 }, { "Venus Williams", 1 }, { "Daria Kasatkina", 1 }, { "Jeļena Ostapenko", 1 }, { "Serena Williams", 1 }, { "Karolína Muchová", 1 } } },
                 { "Agnieszka Radwańska", new Dictionary<string, int> { { "Maria Kirilenko", 1 }, { "Angelique Kerber", 1 }, { "Li Na", 1 }, { "Madison Keys", 1 } } },
                 { "Kirsten Flipkens", new Dictionary<string, int> { { "Petra Kvitová", 1 } } },
                 { "Eugenie Bouchard", new Dictionary<string, int> { { "Angelique Kerber", 1 }, { "Simona Halep", 1 } } },
-                { "Simona Halep", new Dictionary<string, int> { { "Sabine Lisicki", 1 } } },
+                { "Simona Halep", new Dictionary<string, int> { { "Sabine Lisicki", 1 }, { "Zhang Shuai", 1 }, { "Elina Svitolina", 1 }, { "Serena Williams", 1 }, { "Amanda Anisimova", 1 } } },
                 { "Lucie Šafářová", new Dictionary<string, int> { { "Ekaterina Makarova", 1 } } },
                 { "Garbiñe Muguruza", new Dictionary<string, int> { { "Timea Bacsinszky", 1 }, { "Agnieszka Radwańska", 1 }, { "Svetlana Kuznetsova", 1 }, { "Venus Williams", 1 } } },
                 { "Elena Vesnina", new Dictionary<string, int> { { "Dominika Cibulková", 1 } } },
                 { "Johanna Konta", new Dictionary<string, int> { { "Simona Halep", 1 } } },
                 { "Jeļena Ostapenko", new Dictionary<string, int> { { "Dominika Cibulková", 1 } } },
-                { "Julia Görges", new Dictionary<string, int> { { "Kiki Bertens", 1 } } }
+                { "Julia Görges", new Dictionary<string, int> { { "Kiki Bertens", 1 } } },
+                { "Barbora Strýcová", new Dictionary<string, int> { { "Johanna Konta", 1 } } },
+                { "Elina Svitolina", new Dictionary<string, int> { { "Karolína Muchová", 1 }, { "Iga Świątek", 1 } } },
+                { "Ashleigh Barty", new Dictionary<string, int> { { "Ajla Tomljanović", 1 }, { "Angelique Kerber", 1 }, { "Karolína Plíšková", 1 } } },
+                { "Karolína Plíšková", new Dictionary<string, int> { { "Viktorija Golubic", 1 }, { "Aryna Sabalenka", 1 } } },
+                { "Aryna Sabalenka", new Dictionary<string, int> { { "Ons Jabeur", 1 }, { "Madison Keys", 1 } } },
+                { "Elena Rybakina", new Dictionary<string, int> { { "Ajla Tomljanović", 1 }, { "Simona Halep", 1 }, { "Ons Jabeur", 1 }, { "Elina Svitolina", 1 } } },
+                { "Ons Jabeur", new Dictionary<string, int> { { "Marie Bouzková", 1 }, { "Tatjana Maria", 1 }, { "Elena Rybakina", 1 }, { "Aryna Sabalenka", 1 } } },
+                { "Tatjana Maria", new Dictionary<string, int> { { "Jule Niemeier", 1 } } },
+                { "Markéta Vondroušová", new Dictionary<string, int> { { "Jessica Pegula", 1 }, { "Elina Svitolina", 1 }, { "Ons Jabeur", 1 } } },
+                { "Barbora Krejčíková", new Dictionary<string, int> { { "Jeļena Ostapenko", 1 }, { "Elena Rybakina", 1 }, { "Jasmine Paolini", 1 } } },
+                { "Donna Vekić", new Dictionary<string, int> { { "Lulu Sun", 1 } } },
+                { "Jasmine Paolini", new Dictionary<string, int> { { "Emma Navarro", 1 }, { "Donna Vekić", 1 } } }
             };
         }
-        
         static Dictionary<string, Dictionary<string, int>> usOpenMens()
         {
             return new Dictionary<string, Dictionary<string, int>>
@@ -813,9 +903,9 @@ Zina Garrison=Garrison"
                 { "Robby Ginepri", new Dictionary<string, int> { { "Guillermo Coria", 1 } } },
                 { "Nikolay Davydenko", new Dictionary<string, int> { { "Tommy Haas", 2 } } },
                 { "Mikhail Youzhny", new Dictionary<string, int> { { "Rafael Nadal", 1 }, { "Stan Wawrinka", 1 } } },
-                { "Novak Djokovic", new Dictionary<string, int> { { "Carlos Moyà", 1 }, { "David Ferrer", 2 }, { "Andy Roddick", 1 }, { "Fernando Verdasco", 1 }, { "Gaël Monfils", 2 }, { "Roger Federer", 3 }, { "Janko Tipsarević", 1 }, { "Rafael Nadal", 1 }, { "Juan Martín del Potro", 2 }, { "Mikhail Youzhny", 1 }, { "Stan Wawrinka", 1 }, { "Andy Murray", 1 }, { "Feliciano López", 1 }, { "Marin Čilić", 1 }, { "Jo-Wilfried Tsonga", 1 }, { "John Millman", 1 }, { "Kei Nishikori", 1 } } },
+                { "Novak Djokovic", new Dictionary<string, int> { { "Carlos Moyà", 1 }, { "David Ferrer", 2 }, { "Andy Roddick", 1 }, { "Fernando Verdasco", 1 }, { "Gaël Monfils", 2 }, { "Roger Federer", 3 }, { "Janko Tipsarević", 1 }, { "Rafael Nadal", 1 }, { "Juan Martín del Potro", 2 }, { "Mikhail Youzhny", 1 }, { "Stan Wawrinka", 1 }, { "Andy Murray", 1 }, { "Feliciano López", 1 }, { "Marin Čilić", 1 }, { "Jo-Wilfried Tsonga", 1 }, { "John Millman", 1 }, { "Kei Nishikori", 1 }, { "Matteo Berrettini", 1 }, { "Alexander Zverev", 1 }, { "Taylor Fritz", 1 }, { "Ben Shelton", 1 }, { "Daniil Medvedev", 1 } } },
                 { "David Ferrer", new Dictionary<string, int> { { "Juan Ignacio Chela", 1 }, { "Janko Tipsarević", 1 } } },
-                { "Rafael Nadal", new Dictionary<string, int> { { "Mardy Fish", 1 }, { "Fernando González", 1 }, { "Fernando Verdasco", 1 }, { "Mikhail Youzhny", 1 }, { "Novak Djokovic", 2 }, { "Andy Roddick", 1 }, { "Andy Murray", 1 }, { "Tommy Robredo", 1 }, { "Richard Gasquet", 1 }, { "Andrey Rublev", 1 }, { "Juan Martín del Potro", 1 }, { "Kevin Anderson", 1 }, { "Dominic Thiem", 1 } } },
+                { "Rafael Nadal", new Dictionary<string, int> { { "Mardy Fish", 1 }, { "Fernando González", 1 }, { "Fernando Verdasco", 1 }, { "Mikhail Youzhny", 1 }, { "Novak Djokovic", 2 }, { "Andy Roddick", 1 }, { "Andy Murray", 1 }, { "Tommy Robredo", 1 }, { "Richard Gasquet", 1 }, { "Andrey Rublev", 1 }, { "Juan Martín del Potro", 1 }, { "Kevin Anderson", 1 }, { "Dominic Thiem", 1 }, { "Diego Schwartzman", 1 }, { "Matteo Berrettini", 1 }, { "Daniil Medvedev", 1 } } },
                 { "Andy Murray", new Dictionary<string, int> { { "Juan Martín del Potro", 1 }, { "Rafael Nadal", 1 }, { "John Isner", 1 }, { "Marin Čilić", 1 }, { "Tomáš Berdych", 1 }, { "Novak Djokovic", 1 } } },
                 { "Juan Martín del Potro", new Dictionary<string, int> { { "Marin Čilić", 1 }, { "Rafael Nadal", 2 }, { "Roger Federer", 2 }, { "John Isner", 1 } } },
                 { "Tomáš Berdych", new Dictionary<string, int> { { "Roger Federer", 1 } } },
@@ -825,10 +915,23 @@ Zina Garrison=Garrison"
                 { "Marin Čilić", new Dictionary<string, int> { { "Tomáš Berdych", 1 }, { "Roger Federer", 1 }, { "Kei Nishikori", 1 }, { "Jo-Wilfried Tsonga", 1 } } },
                 { "Gaël Monfils", new Dictionary<string, int> { { "Lucas Pouille", 1 } } },
                 { "Kevin Anderson", new Dictionary<string, int> { { "Sam Querrey", 1 }, { "Pablo Carreño Busta", 1 } } },
-                { "Pablo Carreño Busta", new Dictionary<string, int> { { "Diego Schwartzman", 1 } } }
+                { "Pablo Carreño Busta", new Dictionary<string, int> { { "Diego Schwartzman", 1 }, { "Denis Shapovalov", 1 } } },
+                { "Daniil Medvedev", new Dictionary<string, int> { { "Stan Wawrinka", 1 }, { "Grigor Dimitrov", 1 }, { "Andrey Rublev", 2 }, { "Botic van de Zandschulp", 1 }, { "Félix Auger-Aliassime", 1 }, { "Novak Djokovic", 1 }, { "Carlos Alcaraz", 1 } } },
+                { "Grigor Dimitrov", new Dictionary<string, int> { { "Roger Federer", 1 } } },
+                { "Matteo Berrettini", new Dictionary<string, int> { { "Gaël Monfils", 1 } } },
+                { "Alexander Zverev", new Dictionary<string, int> { { "Borna Ćorić", 1 }, { "Pablo Carreño Busta", 1 }, { "Lloyd Harris", 1 } } },
+                { "Dominic Thiem", new Dictionary<string, int> { { "Alex de Minaur", 1 }, { "Daniil Medvedev", 1 }, { "Alexander Zverev", 1 } } },
+                { "Félix Auger-Aliassime", new Dictionary<string, int> { { "Carlos Alcaraz", 1 } } },
+                { "Karen Khachanov", new Dictionary<string, int> { { "Nick Kyrgios", 1 } } },
+                { "Casper Ruud", new Dictionary<string, int> { { "Matteo Berrettini", 1 }, { "Karen Khachanov", 1 } } },
+                { "Carlos Alcaraz", new Dictionary<string, int> { { "Jannik Sinner", 1 }, { "Frances Tiafoe", 1 }, { "Casper Ruud", 1 }, { "Alexander Zverev", 1 } } },
+                { "Frances Tiafoe", new Dictionary<string, int> { { "Andrey Rublev", 1 }, { "Grigor Dimitrov", 1 } } },
+                { "Ben Shelton", new Dictionary<string, int> { { "Frances Tiafoe", 1 } } },
+                { "Jannik Sinner", new Dictionary<string, int> { { "Daniil Medvedev", 1 }, { "Jack Draper", 1 }, { "Taylor Fritz", 1 } } },
+                { "Jack Draper", new Dictionary<string, int> { { "Alex de Minaur", 1 } } },
+                { "Taylor Fritz", new Dictionary<string, int> { { "Alexander Zverev", 1 }, { "Frances Tiafoe", 1 } } }
             };
         }
-        
         static Dictionary<string, Dictionary<string, int>> usOpenWomens()
         {
             return new Dictionary<string, Dictionary<string, int>>
@@ -874,7 +977,7 @@ Zina Garrison=Garrison"
                 { "Venus Williams", new Dictionary<string, int> { { "Irina Spîrlea", 1 }, { "Sandrine Testud", 1 }, { "Arantxa Sánchez", 1 }, { "Barbara Schett", 1 }, { "Nathalie Tauziat", 1 }, { "Martina Hingis", 1 }, { "Lindsay Davenport", 1 }, { "Kim Clijsters", 1 }, { "Jennifer Capriati", 1 }, { "Serena Williams", 1 }, { "Monica Seles", 1 }, { "Amélie Mauresmo", 1 }, { "Jelena Janković", 1 }, { "Francesca Schiavone", 1 }, { "Petra Kvitová", 1 } } },
                 { "Lindsay Davenport", new Dictionary<string, int> { { "Jana Novotná", 1 }, { "Martina Hingis", 1 }, { "Venus Williams", 1 }, { "Amanda Coetzer", 1 }, { "Mary Pierce", 1 }, { "Serena Williams", 1 }, { "Elena Dementieva", 1 }, { "Elena Bovina", 1 }, { "Paola Suárez", 1 }, { "Shinobu Asagoe", 1 } } },
                 { "Irina Spîrlea", new Dictionary<string, int> { { "Monica Seles", 1 } } },
-                { "Serena Williams", new Dictionary<string, int> { { "Martina Hingis", 2 }, { "Lindsay Davenport", 3 }, { "Monica Seles", 1 }, { "Daniela Hantuchová", 1 }, { "Venus Williams", 3 }, { "Dinara Safina", 1 }, { "Jelena Janković", 1 }, { "Flavia Pennetta", 2 }, { "Caroline Wozniacki", 2 }, { "Ana Ivanovic", 1 }, { "Sara Errani", 1 }, { "Victoria Azarenka", 2 }, { "Carla Suárez Navarro", 1 }, { "Li Na", 1 }, { "Ekaterina Makarova", 1 }, { "Simona Halep", 1 }, { "Karolína Plíšková", 1 }, { "Anastasija Sevastova", 1 } } },
+                { "Serena Williams", new Dictionary<string, int> { { "Martina Hingis", 2 }, { "Lindsay Davenport", 3 }, { "Monica Seles", 1 }, { "Daniela Hantuchová", 1 }, { "Venus Williams", 3 }, { "Dinara Safina", 1 }, { "Jelena Janković", 1 }, { "Flavia Pennetta", 2 }, { "Caroline Wozniacki", 2 }, { "Ana Ivanovic", 1 }, { "Sara Errani", 1 }, { "Victoria Azarenka", 2 }, { "Carla Suárez Navarro", 1 }, { "Li Na", 1 }, { "Ekaterina Makarova", 1 }, { "Simona Halep", 1 }, { "Karolína Plíšková", 1 }, { "Anastasija Sevastova", 1 }, { "Wang Qiang", 1 }, { "Elina Svitolina", 1 }, { "Tsvetana Pironkova", 1 } } },
                 { "Elena Dementieva", new Dictionary<string, int> { { "Anke Huber", 1 }, { "Amélie Mauresmo", 1 }, { "Jennifer Capriati", 1 }, { "Lindsay Davenport", 1 }, { "Patty Schnyder", 1 } } },
                 { "Amélie Mauresmo", new Dictionary<string, int> { { "Jennifer Capriati", 1 }, { "Dinara Safina", 1 } } },
                 { "Kim Clijsters", new Dictionary<string, int> { { "Amélie Mauresmo", 1 }, { "Lindsay Davenport", 1 }, { "Venus Williams", 2 }, { "Maria Sharapova", 1 }, { "Mary Pierce", 1 }, { "Li Na", 1 }, { "Serena Williams", 1 }, { "Caroline Wozniacki", 1 }, { "Samantha Stosur", 1 }, { "Vera Zvonareva", 1 } } },
@@ -890,7 +993,7 @@ Zina Garrison=Garrison"
                 { "Vera Zvonareva", new Dictionary<string, int> { { "Kaia Kanepi", 1 }, { "Caroline Wozniacki", 1 } } },
                 { "Angelique Kerber", new Dictionary<string, int> { { "Flavia Pennetta", 1 }, { "Roberta Vinci", 1 }, { "Caroline Wozniacki", 1 }, { "Karolína Plíšková", 1 } } },
                 { "Samantha Stosur", new Dictionary<string, int> { { "Vera Zvonareva", 1 }, { "Angelique Kerber", 1 }, { "Serena Williams", 1 } } },
-                { "Victoria Azarenka", new Dictionary<string, int> { { "Samantha Stosur", 1 }, { "Maria Sharapova", 1 }, { "Daniela Hantuchová", 1 }, { "Flavia Pennetta", 1 } } },
+                { "Victoria Azarenka", new Dictionary<string, int> { { "Samantha Stosur", 1 }, { "Maria Sharapova", 1 }, { "Daniela Hantuchová", 1 }, { "Flavia Pennetta", 1 }, { "Elise Mertens", 1 }, { "Serena Williams", 1 } } },
                 { "Sara Errani", new Dictionary<string, int> { { "Roberta Vinci", 1 } } },
                 { "Li Na", new Dictionary<string, int> { { "Ekaterina Makarova", 1 } } },
                 { "Flavia Pennetta", new Dictionary<string, int> { { "Roberta Vinci", 2 }, { "Petra Kvitová", 1 }, { "Simona Halep", 1 } } },
@@ -900,13 +1003,27 @@ Zina Garrison=Garrison"
                 { "Simona Halep", new Dictionary<string, int> { { "Victoria Azarenka", 1 } } },
                 { "Karolína Plíšková", new Dictionary<string, int> { { "Ana Konjuh", 1 }, { "Serena Williams", 1 } } },
                 { "CoCo Vandeweghe", new Dictionary<string, int> { { "Karolína Plíšková", 1 } } },
-                { "Madison Keys", new Dictionary<string, int> { { "Kaia Kanepi", 1 }, { "CoCo Vandeweghe", 1 }, { "Carla Suárez Navarro", 1 } } },
+                { "Madison Keys", new Dictionary<string, int> { { "Kaia Kanepi", 1 }, { "CoCo Vandeweghe", 1 }, { "Carla Suárez Navarro", 1 }, { "Markéta Vondroušová", 1 } } },
                 { "Sloane Stephens", new Dictionary<string, int> { { "Anastasija Sevastova", 1 }, { "Venus Williams", 1 }, { "Madison Keys", 1 } } },
                 { "Anastasija Sevastova", new Dictionary<string, int> { { "Sloane Stephens", 1 } } },
-                { "Naomi Osaka", new Dictionary<string, int> { { "Lesia Tsurenko", 1 }, { "Madison Keys", 1 }, { "Serena Williams", 1 } } }
+                { "Naomi Osaka", new Dictionary<string, int> { { "Lesia Tsurenko", 1 }, { "Madison Keys", 1 }, { "Serena Williams", 1 }, { "Shelby Rogers", 1 }, { "Jennifer Brady", 1 }, { "Victoria Azarenka", 1 } } },
+                { "Belinda Bencic", new Dictionary<string, int> { { "Donna Vekić", 1 } } },
+                { "Bianca Andreescu", new Dictionary<string, int> { { "Elise Mertens", 1 }, { "Belinda Bencic", 1 }, { "Serena Williams", 1 } } },
+                { "Elina Svitolina", new Dictionary<string, int> { { "Johanna Konta", 1 } } },
+                { "Jennifer Brady", new Dictionary<string, int> { { "Yulia Putintseva", 1 } } },
+                { "Emma Raducanu", new Dictionary<string, int> { { "Belinda Bencic", 1 }, { "Maria Sakkari", 1 }, { "Leylah Fernandez", 1 } } },
+                { "Maria Sakkari", new Dictionary<string, int> { { "Karolína Plíšková", 1 } } },
+                { "Leylah Fernandez", new Dictionary<string, int> { { "Elina Svitolina", 1 }, { "Aryna Sabalenka", 1 } } },
+                { "Aryna Sabalenka", new Dictionary<string, int> { { "Barbora Krejčíková", 1 }, { "Karolína Plíšková", 1 }, { "Zheng Qinwen", 2 }, { "Madison Keys", 1 }, { "Emma Navarro", 1 }, { "Jessica Pegula", 1 } } },
+                { "Iga Świątek", new Dictionary<string, int> { { "Jessica Pegula", 1 }, { "Aryna Sabalenka", 1 }, { "Ons Jabeur", 1 } } },
+                { "Caroline Garcia", new Dictionary<string, int> { { "Coco Gauff", 1 } } },
+                { "Ons Jabeur", new Dictionary<string, int> { { "Ajla Tomljanović", 1 }, { "Caroline Garcia", 1 } } },
+                { "Coco Gauff", new Dictionary<string, int> { { "Jeļena Ostapenko", 1 }, { "Karolína Muchová", 1 }, { "Aryna Sabalenka", 1 } } },
+                { "Karolína Muchová", new Dictionary<string, int> { { "Sorana Cîrstea", 1 }, { "Beatriz Maia", 1 } } },
+                { "Jessica Pegula", new Dictionary<string, int> { { "Iga Świątek", 1 }, { "Karolína Muchová", 1 } } },
+                { "Emma Navarro", new Dictionary<string, int> { { "Paula Badosa", 1 } } }
             };
         }
-        
         static Dictionary<string, Dictionary<string, int>> frenchOpenMens()
         {
             return new Dictionary<string, Dictionary<string, int>>
@@ -991,12 +1108,12 @@ Zina Garrison=Garrison"
                 { "David Nalbandian", new Dictionary<string, int> { { "Gustavo Kuerten", 1 }, { "Nikolay Davydenko", 1 } } },
                 { "Gastón Gaudio", new Dictionary<string, int> { { "Lleyton Hewitt", 1 }, { "David Nalbandian", 1 }, { "Guillermo Coria", 1 } } },
                 { "Tim Henman", new Dictionary<string, int> { { "Juan Ignacio Chela", 1 } } },
-                { "Roger Federer", new Dictionary<string, int> { { "Victor Hănescu", 1 }, { "Mario Ančić", 1 }, { "David Nalbandian", 1 }, { "Tommy Robredo", 1 }, { "Nikolay Davydenko", 1 }, { "Fernando González", 1 }, { "Gaël Monfils", 3 }, { "Juan Martín del Potro", 2 }, { "Robin Söderling", 1 }, { "Novak Djokovic", 1 } } },
-                { "Rafael Nadal", new Dictionary<string, int> { { "David Ferrer", 4 }, { "Roger Federer", 5 }, { "Mariano Puerta", 1 }, { "Novak Djokovic", 6 }, { "Ivan Ljubičić", 1 }, { "Carlos Moyà", 1 }, { "Nicolás Almagro", 3 }, { "Jürgen Melzer", 1 }, { "Robin Söderling", 2 }, { "Andy Murray", 2 }, { "Stanislas Wawrinka", 1 }, { "Pablo Carreño Busta", 1 }, { "Dominic Thiem", 2 }, { "Stan Wawrinka", 1 }, { "Diego Schwartzman", 1 }, { "Juan Martín del Potro", 1 } } },
+                { "Roger Federer", new Dictionary<string, int> { { "Victor Hănescu", 1 }, { "Mario Ančić", 1 }, { "David Nalbandian", 1 }, { "Tommy Robredo", 1 }, { "Nikolay Davydenko", 1 }, { "Fernando González", 1 }, { "Gaël Monfils", 3 }, { "Juan Martín del Potro", 2 }, { "Robin Söderling", 1 }, { "Novak Djokovic", 1 }, { "Stan Wawrinka", 1 } } },
+                { "Rafael Nadal", new Dictionary<string, int> { { "David Ferrer", 4 }, { "Roger Federer", 6 }, { "Mariano Puerta", 1 }, { "Novak Djokovic", 8 }, { "Ivan Ljubičić", 1 }, { "Carlos Moyà", 1 }, { "Nicolás Almagro", 3 }, { "Jürgen Melzer", 1 }, { "Robin Söderling", 2 }, { "Andy Murray", 2 }, { "Stanislas Wawrinka", 1 }, { "Pablo Carreño Busta", 1 }, { "Dominic Thiem", 3 }, { "Stan Wawrinka", 1 }, { "Diego Schwartzman", 3 }, { "Juan Martín del Potro", 1 }, { "Kei Nishikori", 1 }, { "Jannik Sinner", 1 }, { "Alexander Zverev", 1 }, { "Casper Ruud", 1 } } },
                 { "Nikolay Davydenko", new Dictionary<string, int> { { "Tommy Robredo", 1 }, { "Guillermo Cañas", 1 } } },
                 { "Mariano Puerta", new Dictionary<string, int> { { "Guillermo Cañas", 1 }, { "Nikolay Davydenko", 1 } } },
                 { "Ivan Ljubičić", new Dictionary<string, int> { { "Julien Benneteau", 1 } } },
-                { "Novak Djokovic", new Dictionary<string, int> { { "Igor Andreev", 1 }, { "Ernests Gulbis", 2 }, { "Fabio Fognini", 1 }, { "Jo-Wilfried Tsonga", 1 }, { "Roger Federer", 1 }, { "Tommy Haas", 1 }, { "Milos Raonic", 1 }, { "Rafael Nadal", 1 }, { "Andy Murray", 2 }, { "Tomáš Berdych", 1 }, { "Dominic Thiem", 1 } } },
+                { "Novak Djokovic", new Dictionary<string, int> { { "Igor Andreev", 1 }, { "Ernests Gulbis", 2 }, { "Fabio Fognini", 1 }, { "Jo-Wilfried Tsonga", 1 }, { "Roger Federer", 1 }, { "Tommy Haas", 1 }, { "Milos Raonic", 1 }, { "Rafael Nadal", 2 }, { "Andy Murray", 2 }, { "Tomáš Berdych", 1 }, { "Dominic Thiem", 1 }, { "Alexander Zverev", 1 }, { "Pablo Carreño Busta", 1 }, { "Stefanos Tsitsipas", 2 }, { "Matteo Berrettini", 1 }, { "Karen Khachanov", 1 }, { "Carlos Alcaraz", 1 }, { "Casper Ruud", 1 } } },
                 { "Gaël Monfils", new Dictionary<string, int> { { "David Ferrer", 1 } } },
                 { "Robin Söderling", new Dictionary<string, int> { { "Nikolay Davydenko", 1 }, { "Fernando González", 1 }, { "Roger Federer", 1 }, { "Tomáš Berdych", 1 } } },
                 { "Fernando González", new Dictionary<string, int> { { "Andy Murray", 1 } } },
@@ -1008,11 +1125,17 @@ Zina Garrison=Garrison"
                 { "Jo-Wilfried Tsonga", new Dictionary<string, int> { { "Roger Federer", 1 }, { "Kei Nishikori", 1 } } },
                 { "Ernests Gulbis", new Dictionary<string, int> { { "Tomáš Berdych", 1 } } },
                 { "Stan Wawrinka", new Dictionary<string, int> { { "Roger Federer", 1 }, { "Jo-Wilfried Tsonga", 1 }, { "Novak Djokovic", 1 }, { "Albert Ramos-Viñolas", 1 }, { "Marin Čilić", 1 }, { "Andy Murray", 1 } } },
-                { "Dominic Thiem", new Dictionary<string, int> { { "David Goffin", 1 }, { "Novak Djokovic", 1 }, { "Alexander Zverev", 1 }, { "Marco Cecchinato", 1 } } },
-                { "Marco Cecchinato", new Dictionary<string, int> { { "Novak Djokovic", 1 } } }
+                { "Dominic Thiem", new Dictionary<string, int> { { "David Goffin", 1 }, { "Novak Djokovic", 2 }, { "Alexander Zverev", 1 }, { "Marco Cecchinato", 1 }, { "Karen Khachanov", 1 } } },
+                { "Marco Cecchinato", new Dictionary<string, int> { { "Novak Djokovic", 1 } } },
+                { "Stefanos Tsitsipas", new Dictionary<string, int> { { "Andrey Rublev", 1 }, { "Daniil Medvedev", 1 }, { "Alexander Zverev", 1 } } },
+                { "Diego Schwartzman", new Dictionary<string, int> { { "Dominic Thiem", 1 } } },
+                { "Alexander Zverev", new Dictionary<string, int> { { "Alejandro Fokina", 1 }, { "Carlos Alcaraz", 1 }, { "Tomás Etcheverry", 1 }, { "Alex de Minaur", 1 }, { "Casper Ruud", 1 } } },
+                { "Casper Ruud", new Dictionary<string, int> { { "Holger Rune", 2 }, { "Marin Čilić", 1 }, { "Alexander Zverev", 1 }, { "Novak Djokovic", 1 } } },
+                { "Marin Čilić", new Dictionary<string, int> { { "Andrey Rublev", 1 } } },
+                { "Carlos Alcaraz", new Dictionary<string, int> { { "Stefanos Tsitsipas", 2 }, { "Jannik Sinner", 1 }, { "Alexander Zverev", 1 } } },
+                { "Jannik Sinner", new Dictionary<string, int> { { "Grigor Dimitrov", 1 } } }
             };
         }
-        
         static Dictionary<string, Dictionary<string, int>> frenchOpenWomens()
         {
             return new Dictionary<string, Dictionary<string, int>>
@@ -1092,7 +1215,7 @@ Zina Garrison=Garrison"
                 { "Marion Bartoli", new Dictionary<string, int> { { "Svetlana Kuznetsova", 1 } } },
                 { "Li Na", new Dictionary<string, int> { { "Victoria Azarenka", 1 }, { "Maria Sharapova", 1 }, { "Francesca Schiavone", 1 } } },
                 { "Sara Errani", new Dictionary<string, int> { { "Angelique Kerber", 1 }, { "Samantha Stosur", 1 }, { "Agnieszka Radwańska", 1 } } },
-                { "Petra Kvitová", new Dictionary<string, int> { { "Yaroslava Shvedova", 1 } } },
+                { "Petra Kvitová", new Dictionary<string, int> { { "Yaroslava Shvedova", 1 }, { "Laura Siegemund", 1 } } },
                 { "Victoria Azarenka", new Dictionary<string, int> { { "Maria Kirilenko", 1 } } },
                 { "Eugenie Bouchard", new Dictionary<string, int> { { "Carla Suárez Navarro", 1 } } },
                 { "Simona Halep", new Dictionary<string, int> { { "Svetlana Kuznetsova", 1 }, { "Andrea Petkovic", 1 }, { "Elina Svitolina", 1 }, { "Karolína Plíšková", 1 }, { "Angelique Kerber", 1 }, { "Garbiñe Muguruza", 1 }, { "Sloane Stephens", 1 } } },
@@ -1104,10 +1227,28 @@ Zina Garrison=Garrison"
                 { "Jeļena Ostapenko", new Dictionary<string, int> { { "Caroline Wozniacki", 1 }, { "Timea Bacsinszky", 1 }, { "Simona Halep", 1 } } },
                 { "Karolína Plíšková", new Dictionary<string, int> { { "Caroline Garcia", 1 } } },
                 { "Madison Keys", new Dictionary<string, int> { { "Yulia Putintseva", 1 } } },
-                { "Sloane Stephens", new Dictionary<string, int> { { "Daria Kasatkina", 1 }, { "Madison Keys", 1 } } }
+                { "Sloane Stephens", new Dictionary<string, int> { { "Daria Kasatkina", 1 }, { "Madison Keys", 1 } } },
+                { "Ashleigh Barty", new Dictionary<string, int> { { "Madison Keys", 1 }, { "Amanda Anisimova", 1 }, { "Markéta Vondroušová", 1 } } },
+                { "Amanda Anisimova", new Dictionary<string, int> { { "Simona Halep", 1 } } },
+                { "Johanna Konta", new Dictionary<string, int> { { "Sloane Stephens", 1 } } },
+                { "Markéta Vondroušová", new Dictionary<string, int> { { "Petra Martić", 1 }, { "Johanna Konta", 1 } } },
+                { "Iga Świątek", new Dictionary<string, int> { { "Martina Trevisan", 1 }, { "Nadia Podoroska", 1 }, { "Sofia Kenin", 1 }, { "Jessica Pegula", 1 }, { "Daria Kasatkina", 1 }, { "Coco Gauff", 3 }, { "Beatriz Maia", 1 }, { "Karolína Muchová", 1 }, { "Markéta Vondroušová", 1 }, { "Jasmine Paolini", 1 } } },
+                { "Nadia Podoroska", new Dictionary<string, int> { { "Elina Svitolina", 1 } } },
+                { "Sofia Kenin", new Dictionary<string, int> { { "Danielle Collins", 1 }, { "Petra Kvitová", 1 } } },
+                { "Barbora Krejčíková", new Dictionary<string, int> { { "Coco Gauff", 1 }, { "Maria Sakkari", 1 } } },
+                { "Maria Sakkari", new Dictionary<string, int> { { "Iga Świątek", 1 } } },
+                { "Tamara Zidanšek", new Dictionary<string, int> { { "Paula Badosa", 1 } } },
+                { "Daria Kasatkina", new Dictionary<string, int> { { "Veronika Kudermetova", 1 } } },
+                { "Martina Trevisan", new Dictionary<string, int> { { "Leylah Fernandez", 1 } } },
+                { "Coco Gauff", new Dictionary<string, int> { { "Sloane Stephens", 1 }, { "Martina Trevisan", 1 }, { "Ons Jabeur", 1 } } },
+                { "Beatriz Maia", new Dictionary<string, int> { { "Ons Jabeur", 1 } } },
+                { "Aryna Sabalenka", new Dictionary<string, int> { { "Elina Svitolina", 1 } } },
+                { "Karolína Muchová", new Dictionary<string, int> { { "Aryna Sabalenka", 1 } } },
+                { "Jasmine Paolini", new Dictionary<string, int> { { "Elena Rybakina", 1 }, { "Mirra Andreeva", 1 } } },
+                { "Mirra Andreeva", new Dictionary<string, int> { { "Aryna Sabalenka", 1 } } }
             };
         }
         
-        // End auto-generated
+        #endregion // auto-generated
     }
 }
